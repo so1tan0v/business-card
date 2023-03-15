@@ -1,0 +1,135 @@
+::selection {
+  background: #4e5051;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-size: 10pt!important;
+  font-family: Inconsolata, monospace;
+  color: white;
+  background: -webkit-linear-gradient(90deg, #163b46,#282d33);
+  background: linear-gradient(90deg, #163b46,#282d33);
+}
+#container {
+  padding: .1em 1.5em 1em 1em;
+}
+#container output {
+  clear: both;
+  width: 100%;
+}
+#container output h3 {
+  margin: 0;
+}
+#container output pre {
+  margin: 0;
+}
+.input-line {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  clear: both;
+}
+.input-line > div:nth-child(2) {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
+.prompt {
+  white-space: nowrap;
+  color: #ffffff;
+  margin-right: 7px;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-orient: vertical;
+  display: -moz-box;
+  -moz-box-pack: center;
+  -moz-box-orient: vertical;
+  display: box;
+  box-pack: center;
+  box-orient: vertical;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.cmdline {
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  width: 100%;
+  font: inherit;
+  border: none;
+  color: inherit;
+}
+.ls-files {
+  height: 45px;
+  -webkit-column-width: 100px;
+  -moz-column-width: 100px;
+  -o-column-width: 100px;
+  column-width: 100px;
+}
+
+/************************************************************/
+/* SVG Clock                                                */
+/************************************************************/
+
+.clock-container {
+  display: none /*inline-block*/;
+  position: relative;
+  width: 200px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.clock-container > svg > circle {
+  stroke-width: 2px;
+  stroke: #fff;
+}
+
+.hour, .min, .sec {
+  stroke-width: 1px;
+  fill: #333;
+  stroke: #555;
+}
+
+.sec {
+   stroke: #f55;
+}
+
+.model {
+    position: fixed;
+    width: 1000px;
+    height: 800px;
+    top: 20%;
+    left: 20%;
+    margin: -110px 0 0 -100px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+a {
+  text-decoration: none!important;
+  color: rgb(92, 215, 184)!important;
+  font-weight: bold;
+}
+
+.link {
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(92, 215, 184)!important;
+}
+
+.dialog {
+  overflow-x: hidden;
+}
+
+
