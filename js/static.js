@@ -1,4 +1,4 @@
-const username = 'user@about';
+const username = 'solt@about';
 
 const terminalCommands = [
     'help',
