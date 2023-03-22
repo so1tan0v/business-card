@@ -1,80 +1,112 @@
 ::selection {
-  background: #4e5051;
+    background: #4e5051;
 }
 html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+    width: 100%!important;
+    height: 100%!important;
+    margin: 0;
 }
 body {
-  font-size: 10pt!important;
-  font-family: Inconsolata, monospace;
-  color: white;
-  background: -webkit-linear-gradient(90deg, #163b46,#282d33);
-  background: linear-gradient(90deg, #163b46,#282d33);
+    font-size: 10pt!important;
+    font-family: Inconsolata, monospace!important;
+    color: white!important;
+    background: -webkit-linear-gradient(90deg, #163b46,#282d33);
+    background: linear-gradient(90deg, #163b46,#282d33);
 }
+
+output {
+    display: block!important;
+}
+
+pre {
+    font-size: 10pt!important;
+}
+
+.dialog {
+    height: 100%;
+    width: 100%;
+    color: white!important;
+    background: #242728;
+    overflow-x: hidden;
+}
+
+.black-screen {
+    height: 100%!important;
+    width: 100%!important;
+    background: black;
+}
+
+
 #container {
-  padding: .1em 1.5em 1em 1em;
+    padding: .1em 1.5em 1em 1em;
 }
+
 #container output {
-  clear: both;
-  width: 100%;
+    clear: both;
+    width: 100%;
 }
+
 #container output h3 {
-  margin: 0;
+    margin: 0;
 }
+
 #container output pre {
-  margin: 0;
+    margin: 0;
 }
+
 .input-line {
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  clear: both;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: horizontal;
+    box-align: stretch;
+    clear: both;
 }
+
 .input-line > div:nth-child(2) {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
 }
+
 .prompt {
-  white-space: nowrap;
-  color: #ffffff;
-  margin-right: 7px;
-  display: -webkit-box;
-  -webkit-box-pack: center;
-  -webkit-box-orient: vertical;
-  display: -moz-box;
-  -moz-box-pack: center;
-  -moz-box-orient: vertical;
-  display: box;
-  box-pack: center;
-  box-orient: vertical;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+    white-space: nowrap;
+    color: #ffffff;
+    margin-right: 7px;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-box-pack: center;
+    -moz-box-orient: vertical;
+    display: box;
+    box-pack: center;
+    box-orient: vertical;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
+
 .cmdline {
-  outline: none;
-  background-color: transparent;
-  margin: 0;
-  width: 100%;
-  font: inherit;
-  border: none;
-  color: inherit;
+    color: #ffffff!important;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    width: 100%;
+    font: inherit;
+    border: none;
 }
+
 .ls-files {
-  height: 45px;
-  -webkit-column-width: 100px;
-  -moz-column-width: 100px;
-  -o-column-width: 100px;
-  column-width: 100px;
+    /*height: 45px;*/
+    -webkit-column-width: 100px;
+    -moz-column-width: 100px;
+    -o-column-width: 100px;
+    column-width: 100px;
 }
 
 /************************************************************/
@@ -82,26 +114,26 @@ body {
 /************************************************************/
 
 .clock-container {
-  display: none /*inline-block*/;
-  position: relative;
-  width: 200px;
-  vertical-align: middle;
-  overflow: hidden;
+    display: none /*inline-block*/;
+    position: relative;
+    width: 200px;
+    vertical-align: middle;
+    overflow: hidden;
 }
 
 .clock-container > svg > circle {
-  stroke-width: 2px;
-  stroke: #fff;
+    stroke-width: 2px;
+    stroke: #fff;
 }
 
 .hour, .min, .sec {
-  stroke-width: 1px;
-  fill: #333;
-  stroke: #555;
+    stroke-width: 1px;
+    fill: #333;
+    stroke: #555;
 }
 
 .sec {
-   stroke: #f55;
+    stroke: #f55;
 }
 
 .model {
@@ -117,19 +149,19 @@ body {
 }
 
 a {
-  text-decoration: none!important;
-  color: rgb(92, 215, 184)!important;
-  font-weight: bold;
+    text-decoration: none!important;
+    color: rgb(92, 215, 184)!important;
+    font-weight: bold;
 }
 
 .link {
-  cursor: pointer;
-  font-weight: bold;
-  color: rgb(92, 215, 184)!important;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(92, 215, 184)!important;
 }
 
 .dialog {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 

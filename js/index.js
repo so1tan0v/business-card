@@ -171,10 +171,14 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
                 output('This is a page about Alexander Soltanov.<br>In this terminal you can find out about me and my projects.');
                 output('Write a command or click on it!');
                 output(`
-                    <div class="ls-files">
-                        ${terminalCommands.map(item => `<span class   = "link" 
-                                                   onclick = "keyboardInputEmission('${item}', $('.cmdline:not(.used)'))" 
-                                             >${item}</span>`).join('<br>')}
+                    <div class="ls-files row">
+                        ${terminalCommands.map(item => `
+                            <div class="col-md-2">
+                                <span class   = "link" 
+                                    onclick = "keyboardInputEmission('${item}', $('.cmdline:not(.used)'))" 
+                                >${item}</span>
+                            </div>
+                        `).join('<br>')}
                     </div>
                 `);
                 break;
@@ -192,36 +196,8 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
             case 'aboutfetch':
             case 'me':
                 // https://manytools.org/hacker-tools/convert-images-to-ascii-art/go/
-                output(`
-                    <table style="width: 100%">
-                        <tr>
-                            <td style="width: 370px">
-                                ${myPhoto}
-                            </td>
-                            <td style="font-size: 10pt">
-                                <span style="color: #3daac4">Alex</span>@<span style="color: #3daac4">Soltanov</span><br>
-                                <span style="color: #3daac4">Position:</span> TeamLead / Full-stack Engineer <br>
-                                <span style="color: #3daac4">Work experience:</span> 1 year 9 mouths <br>
-                                <span style="color: #3daac4">Programming languages:</span> JavaScript, PHP <br>
-                                &nbsp;&nbsp;<span style="color: #c4c03d">Frameworks:</span> <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c4733d">JavaScript:</span> jQuery;<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c4733d">NodeJS:</span> Express, Nodemon, Sequelize<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c4733d">PHP:</span> Symfony;<br>
-                                &nbsp;&nbsp;<span style="color: #c4c03d">Language versions:</span><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c4733d">JavaScript:</span> ES6;<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #c4733d">PHP:</span> 5.6, 7.4, 8.1;<br>
-                                <span style="color: #3daac4">Databases:</span> MySQL, PostgreSQL<br>
-                                <span style="color: #3daac4">Web servers:</span> Apache, Nginx <br>
-                                <br>
-                                <span style="color: #3daac4">E-mail:</span><a href="mailto:so1tan0v@gmail.com" target="_blank"> so1tan0v@gmail.com</a><br>
-                                <span style="color: #3daac4">Telegram:</span><a href="https://t.me/thisIsOtval" target="_blank"> @so1tan0v</a><br>
-                                <span style="color: #3daac4">GitHub:</span><a href="https://github.com/so1tan0v" target="_blank"> @so1tan0v</a><br>
-                            </td>
-                        </tr>
-                    </table>
-                `)
-                // output("<br><strong>Rafael Casachi</strong>");
-                // output('<em>sashasyltanov@gmail.com | <a href="https://www.rafaelcasachi.dev" target="blank" style="color:#c36d3c!important">https://www.rafaelcasachi.dev</a></em>');
+                let infoAboutMe = getAllInformationAboutMe();
+                output(infoAboutMe);
                 break;
             case 'experience':
                 let $prompt = $('.prompt');
@@ -370,16 +346,33 @@ function keyboardInputEmission(text, $input) {
             $input.val($input.val() + text_arr[i++]);
         }
 
-        _timer = setInterval(_showLetter, 170);
+        _timer = setInterval(_showLetter, 100);
     })
 }
 
 $(function() {
-    $('.dialog').dialog({
-        title  : `${username}:~`,
-        width  : 1100,
-        height : 700
+    const $dialog = $('.dialog');
+    let heightPage  = $(window).height() * 0.9;
+    let widthPage = $(window).width() * 0.9;
+
+    $dialog.dialog({
+        title     : `${username}:~`,
+        width     : widthPage < 1100
+                        ? widthPage
+                        : 1100,
+        height    : heightPage < 700
+                        ? heightPage
+                        : 700,
+        open      : function(){
+            $(this).css("max-height", '100%');
+            $(this).css("max-width", '100%');
+            $(this).css("overflow-x", 'hidden');
+        }
     });
+
+     $dialog.on('dialogclose', function(event) {
+         onCloseDialog();
+     });
 
     $('.prompt').html(`[${username}] # `);
 
@@ -394,4 +387,16 @@ $(function() {
             await keyboardInputEmission('help', $input);
         }, 200);
     })
+
+    $(window).resize(function() {
+        let heightPage  = $(window).height() * 0.9;
+        let widthPage = $(window).width() * 0.9;
+
+        $dialog.dialog("option", "width", widthPage < 1100
+                                                    ? widthPage
+                                                    : 1100);
+        $dialog.dialog("option", "height", heightPage < 700
+                                                    ? heightPage
+                                                    : 700);
+    });
 });

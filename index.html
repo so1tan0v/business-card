@@ -1,30 +1,47 @@
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+        <meta charset="utf-8">
+        <meta content="width=device-width, user-scalable=yes" name="viewport">
+        <meta content="NONE, NOARCHIVE" name="robots">
+        <meta name="google" content="notranslate" />
         <title>solt@about:~</title>
-        <link href="css/fonts.css" rel="stylesheet" type="text/css" />
-        <link href="css/main.css" rel="stylesheet" type="text/css" />
-        <link href="css/scroller.css" rel="stylesheet" type="text/css" />
-        <link href="css/framework/jquery-ui.css" rel="stylesheet" type="text/css" />
-        <link href="css/framework/jquery-ui.structure.css" rel="stylesheet" type="text/css" />
-        <link href="css/framework/jquery-ui.theme.css" rel="stylesheet" type="text/css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+        <link href="css/fonts.css?ver=1"                         rel="stylesheet" type="text/css" />
+        <link href="css/main.css?ver=1"                          rel="stylesheet" type="text/css" />
+        <link href="css/scroller.css?ver=1"                      rel="stylesheet" type="text/css" />
+        <link href="css/framework/bootstrap.css?ver=1"           rel="stylesheet" type="text/css" />
+        <link href="css/framework/jquery-ui.css?ver=1"           rel="stylesheet" type="text/css" />
+        <link href="css/framework/jquery-ui.structure.css?ver=1" rel="stylesheet" type="text/css" />
+        <link href="css/framework/jquery-ui.theme.css?ver=1"     rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div class="model">
             <div class="dialog" id="wrapper">
-               <output></output>
-               <div id="input-line" class="input-line">
-                  <div class="prompt"></div><div><input class="cmdline" autofocus /></div>
-               </div>
+                <div>
+                    <output></output>
+                    <div id="input-line" class="input-line">
+                       <div class="prompt"></div><div><input class="cmdline" autofocus /></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <script src="js/framework/jquery-3-6-0.js"></script>
-        <script src="js/framework/jquery-ui.js"></script>
-        <script src="js/framework/terminal.js"></script>
-        <script src="js/static.js"></script>
-        <script src="js/index.js"></script>
+        <div class="black-screen" style="display: none;">
+            <div class="p-2" id="system-info"></div>
+            <div class="p-2" id="typed"></div>
+            <div class="p-2" id="timer-div" style="display: none;">
+                Your page will reload: <span id="timer"></span>
+            </div>
+        </div>
+
+        <script src="js/framework/jquery-3-6-0.js?ver=1"></script>
+        <script src="js/framework/jquery-ui.js?ver=1"></script>
+        <script src="js/framework/terminal.js?ver=1"></script>
+        <script src="js/framework/typed.umd.js?ver=1"></script>
+        <script src="js/helper.js?ver=1"></script>
+        <script src="js/myPhoto.js?ver=1"></script>
+        <script src="js/static.js?ver=1"></script>
+        <script src="js/index.js?ver=1"></script>
     </body>
 </html>
