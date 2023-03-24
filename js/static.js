@@ -104,7 +104,7 @@ const links = {
         title_color : '#3daac4',
     },
     'Telegram': {
-        txt         : `<a href="https://t.me/thisIsOtval" target="_blank"> @so1tan0v</a>`,
+        txt         : `<a href="https://t.me/so1tan0v" target="_blank"> @so1tan0v</a>`,
         title_color : '#3daac4',
     },
     'GitHub': {

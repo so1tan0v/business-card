@@ -188,7 +188,7 @@ let Terminal = function(cmdLineContainer, outputContainer) {
                         output(`
                             <div>
                                 ${gitGub.projects.map((project, key) => {
-                                    return `${key++}. <a href="${project.link}" target="_blank"> ${project.name}`
+                                    return `${key + 1}. <a href="${project.link}" target="_blank"> ${project.name}</a>`
                                 }).join(`<br>`)}
                             </div>
                         `);
