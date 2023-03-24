@@ -1,18 +1,26 @@
 function getWorkExperience(date) {
     let currentDate = new Date().getTime(),
         secondDate  = new Date(date).getTime(),
-        dateDiff    = (currentDate - secondDate) / 1000,
-        yearDiff    = Math.abs(Math.round(dateDiff/365)),
-        monthDiff   = Math.abs(Math.round((yearDiff * 365 - dateDiff) / 30));
+        secDiff     = Math.abs(currentDate - secondDate),
+        years       = Math.floor(secDiff / (1000 * 60 * 60 * 24 * 30 * 12)),
+        months      = Math.floor(secDiff / (1000 * 60 * 60 * 24 * 30) % 12),
+        days        = Math.floor(secDiff / (1000 * 60 * 60 * 24) % 30),
+        hours       = Math.floor((secDiff / (1000 * 60 * 60)) % 24),
+        minutes     = Math.floor((secDiff / (1000 * 60)) % 60),
+        seconds     = Math.floor((secDiff / 1000) % 60);
 
     return {
-        years  : yearDiff,
-        months : monthDiff
+        years,
+        months,
+        days,
+        hours,
+        minutes,
+        seconds
     };
 }
 
 function getAllInformationAboutMe() {
-    let html = '',
+    let html,
         info = parseInformationAboutMe(informationAboutMe);
 
     if(links) {
@@ -28,7 +36,7 @@ function getAllInformationAboutMe() {
             `;
 
             let txt = `
-                <span ${linkCategoryData.txt_color
+                <span ${linkCategoryData?.txt_color
                           ? `style="color: ${linkCategoryData.txt_color}"`
                           : ``}"
                 >${linkCategoryData.txt}</span><br>
@@ -114,7 +122,7 @@ async function sleep(time) {
     })
 }
 
-async function onCloseDialog() {
+async function showBlackWindow() {
     $('.model').hide();
     $('.black-screen').show();
 
@@ -130,4 +138,27 @@ async function onCloseDialog() {
         showCursor : false
     });
     location.reload();
+}
+
+function keyboardInputEmission(text, $input) {
+    $input.prop('disabled', true);
+    return new Promise(resolve => {
+        let text_arr = text.split('');
+        let i = 0;
+        let _timer = null;
+
+        function _showLetter() {
+            if (i >= text_arr.length) {
+                clearInterval(_timer);
+                $input.prop('disabled', false);
+                term.pressingEnter.call($input[0])
+                resolve(true);
+                return;
+            }
+
+            $input.val($input.val() + text_arr[i++]);
+        }
+
+        _timer = setInterval(_showLetter, 70);
+    })
 }

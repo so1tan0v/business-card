@@ -7,11 +7,11 @@ html, body {
     margin: 0;
 }
 body {
-    font-size: 10pt!important;
+    font-size: 9pt!important;
     font-family: Inconsolata, monospace!important;
     color: white!important;
-    background: -webkit-linear-gradient(90deg, #163b46,#282d33);
-    background: linear-gradient(90deg, #163b46,#282d33);
+    background: -webkit-linear-gradient(90deg, #113e4b,#282d33);
+    background: linear-gradient(90deg, #113e4b,#282d33);
 }
 
 output {
@@ -23,11 +23,7 @@ pre {
 }
 
 .dialog {
-    height: 100%;
-    width: 100%;
     color: white!important;
-    background: #242728;
-    overflow-x: hidden;
 }
 
 .black-screen {
@@ -99,6 +95,7 @@ pre {
     width: 100%;
     font: inherit;
     border: none;
+    caret: white block;
 }
 
 .ls-files {
@@ -148,20 +145,8 @@ pre {
     z-index: 100;
 }
 
-a {
+a, .link {
     text-decoration: none!important;
     color: rgb(92, 215, 184)!important;
     font-weight: bold;
 }
-
-.link {
-    cursor: pointer;
-    font-weight: bold;
-    color: rgb(92, 215, 184)!important;
-}
-
-.dialog {
-    overflow-x: hidden;
-}
-
-

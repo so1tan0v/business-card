@@ -1,3 +1,7 @@
+/**
+ * You can create same image by this app https://manytools.org/hacker-tools/convert-images-to-ascii-art/go/
+ * @type {string}
+ */
 const myPhoto = `
 <span class="ascii" 
       style="
