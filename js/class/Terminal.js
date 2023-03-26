@@ -7,11 +7,11 @@ let Terminal = function(cmdLineContainer, outputContainer) {
     let histpos_ = 0;
     let histtemp_ = 0;
 
-    window.addEventListener('click', function() {
-        cmdLine_.focus();
-    }, false);
+    // window.addEventListener('click', function() {
+    //     cmdLine_.focus();
+    // }, false);
 
-    cmdLine_.addEventListener('click', inputTextClick_, false);
+    // cmdLine_.addEventListener('click', inputTextClick_, false);
     cmdLine_.addEventListener('keydown', historyHandler_, false);
     cmdLine_.addEventListener('keydown', processNewCommand_, false);
 
