@@ -84,17 +84,21 @@ const gitGub = {
     link: 'https://github.com/so1tan0v',
     projects: [
         {
-            name: 'coffee-shop-bot',
+            name: 'coffee-shop-bot (NodeJs)',
             link: 'https://github.com/so1tan0v/coffee-shop-bot'
         },
         {
-            name: 'business-card',
+            name: 'lottery-telegram-bot (NodeJs)',
+            link: 'https://github.com/so1tan0v/coffee-shop-bot'
+        },
+        {
+            name: 'business-card (jQuery)',
             link: 'https://github.com/so1tan0v/business-card'
         },
         {
-            name: 'business-card-navigation-page',
+            name: 'business-card-navigation-page (jQuery)',
             link: 'https://github.com/so1tan0v/business-card-navigation-page'
-        },
+        }
     ]
 }
 
