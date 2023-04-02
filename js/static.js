@@ -89,7 +89,7 @@ const gitGub = {
         },
         {
             name: 'lottery-telegram-bot (NodeJs)',
-            link: 'https://github.com/so1tan0v/coffee-shop-bot'
+            link: 'https://github.com/so1tan0v/lottery-telegram-bot'
         },
         {
             name: 'business-card (jQuery)',
