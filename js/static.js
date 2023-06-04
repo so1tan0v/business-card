@@ -85,11 +85,11 @@ const gitGub = {
     link: 'https://github.com/so1tan0v',
     projects: [
         {
-            name: 'coffee-shop-bot (NodeJs)',
+            name: 'coffee-shop-bot (NodeJS)',
             link: 'https://github.com/so1tan0v/coffee-shop-bot'
         },
         {
-            name: 'lottery-telegram-bot (NodeJs)',
+            name: 'lottery-telegram-bot (NodeJS)',
             link: 'https://github.com/so1tan0v/lottery-telegram-bot'
         },
         {
