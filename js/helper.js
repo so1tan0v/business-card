@@ -142,6 +142,7 @@ async function showBlackWindow() {
 
 function keyboardInputEmission(text, $input = $('.cmdline:not(.used)')) {
     $input.prop('disabled', true);
+    $input.val('');
     return new Promise(resolve => {
         let text_arr = text.split('');
         let i = 0;

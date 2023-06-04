@@ -39,7 +39,7 @@ let Terminal = function(cmdLineContainer, outputContainer) {
         }
     }
 
-    async function pressingEnter() {
+    async function pressingEnter(value = '') {
         return new Promise(async resolve => {
             // Save shell history.
             if (this.value) {
@@ -71,16 +71,50 @@ let Terminal = function(cmdLineContainer, outputContainer) {
             await execCMD(cmd, args);
 
             $(line).find('.cmdline')[0].scrollIntoView();
-            this.value = ''; // Clear/setup line for next input.
+            this.value = value; // Clear/setup line for next input.
             resolve(true);
         });
     }
     that.pressingEnter = pressingEnter;
 
     async function processNewCommand_(e) {
-        if (e.keyCode === 9) { // tab
+        if (e.keyCode === 9) {
+            const $input = $('.cmdline:not(.used)');
+            if(!$input.val().trim()) {
+                e.preventDefault();
+                return;
+            }
+            const availableCommands = terminalCommands.filter((command) => command.indexOf($input.val()) === 0);
+            switch (availableCommands.length) {
+                case 0:
+                    e.preventDefault();
+                    break;
+                case 1:
+                    $input.val(availableCommands[0])
+                    break;
+                default:
+                    let line = this.parentNode.parentNode.cloneNode(true);
+                    line.removeAttribute('id')
+                    line.classList.add('line');
+                    let input = line.querySelector('input.cmdline');
+                    input.autofocus = false;
+                    input.readOnly = true;
+                    $(input).addClass('used');
+                    output_.appendChild(line);
+                    output(`
+                        <div class="ls-files row">
+                            ${availableCommands.map(item => `
+                                <div class="col-md-2">
+                                    <span class   = "link" 
+                                        onclick = "keyboardInputEmission('${item}', $('.cmdline:not(.used)'))" 
+                                    >${item}</span>
+                                </div>
+                            `).join('<br>')}
+                        </div>
+                    `);
+                    break;
+            }
             e.preventDefault();
-            // Implement tab suggest.
         } else if (e.keyCode === 13) { // enter
             await pressingEnter.call(this);
         }
