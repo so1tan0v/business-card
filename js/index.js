@@ -1,4 +1,14 @@
+const url = new URL(window.location);
+
 let term;
+let langPage = url.searchParams.get('lang') ?? 'en';
+$('html').attr('lang', langPage);
+
+if(langPage !== 'en') {
+    setSearchParams({
+        lang: langPage
+    });
+}
 
 $(async function() {
     const $dialog = $('.dialog');
@@ -45,9 +55,13 @@ $(async function() {
         if($input.is(':focus'))
             return;
 
+        const value = nonAlphabeticKeys.includes(e.keyCode)
+            ? ``
+            : e.key;
+
         $input
-            .val(e.originalEvent.key)
-            .focus();
+            .focus()
+            .val(value);
     })
     $dialog.on('dialogclose', function() {
         showBlackWindow();

@@ -7,20 +7,9 @@ let Terminal = function(cmdLineContainer, outputContainer) {
     let histpos_ = 0;
     let histtemp_ = 0;
 
-    // window.addEventListener('click', function() {
-    //     cmdLine_.focus();
-    // }, false);
-
-    // cmdLine_.addEventListener('click', inputTextClick_, false);
     cmdLine_.addEventListener('keydown', historyHandler_, false);
     cmdLine_.addEventListener('keydown', processNewCommand_, false);
 
-    //
-    function inputTextClick_() {
-        // this.value = this.value;
-    }
-
-    //
     function historyHandler_(e) {
         if (history_.length) {
             if (e.keyCode === 38 || e.keyCode === 40) {
@@ -51,46 +40,49 @@ let Terminal = function(cmdLineContainer, outputContainer) {
     }
 
     async function pressingEnter() {
-        // Save shell history.
-        if (this.value) {
-            history_[history_.length] = this.value;
-            histpos_ = history_.length;
-        }
+        return new Promise(async resolve => {
+            // Save shell history.
+            if (this.value) {
+                history_[history_.length] = this.value;
+                histpos_ = history_.length;
+            }
 
-        // Duplicate current input and append to output section.
-        let line = this.parentNode.parentNode.cloneNode(true);
-        line.removeAttribute('id')
-        line.classList.add('line');
-        let input = line.querySelector('input.cmdline');
-        input.autofocus = false;
-        input.readOnly = true;
-        $(input).addClass('used');
-        output_.appendChild(line);
+            // Duplicate current input and append to output section.
+            let line = this.parentNode.parentNode.cloneNode(true);
+            line.removeAttribute('id')
+            line.classList.add('line');
+            let input = line.querySelector('input.cmdline');
+            input.autofocus = false;
+            input.readOnly = true;
+            $(input).addClass('used');
+            output_.appendChild(line);
 
-        let args,
-            cmd;
+            let args,
+                cmd;
 
-        if (this.value && this.value.trim()) {
-            args = this.value.split(' ').filter(function(val) {
-                return val;
-            });
-            cmd = args[0].toLowerCase();
-            args = args.splice(1); // Remove cmd from arg list.
-        }
+            if (this.value && this.value.trim()) {
+                args = this.value.split(' ').filter(function(val) {
+                    return val;
+                });
+                cmd = args[0].toLowerCase();
+                args = args.splice(1); // Remove cmd from arg list.
+            }
 
-        await execCMD(cmd, args);
+            await execCMD(cmd, args);
 
-        $(line).find('.cmdline')[0].scrollIntoView();
-        this.value = ''; // Clear/setup line for next input.
+            $(line).find('.cmdline')[0].scrollIntoView();
+            this.value = ''; // Clear/setup line for next input.
+            resolve(true);
+        });
     }
     that.pressingEnter = pressingEnter;
 
-    function processNewCommand_(e) {
+    async function processNewCommand_(e) {
         if (e.keyCode === 9) { // tab
             e.preventDefault();
             // Implement tab suggest.
         } else if (e.keyCode === 13) { // enter
-            pressingEnter.call(this).then(() => console.log('Enter pressed'));
+            await pressingEnter.call(this);
         }
     }
 
@@ -222,6 +214,36 @@ E[:]||||[:]3
                                 ooO     Ooo
 ` + `</pre>`);
                 break;
+            case 'changelang':
+                if(!args[0])
+                    args[0] = '';
+
+                switch (args[0]) {
+                    case '':
+                    case '-h':
+                    case '--help':
+                        output(`use: changelang [-h | --help]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command [arg]
+                        `);
+                        output(`Set Russian language<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class   = "link" 
+                                       onclick = "keyboardInputEmission('changelang ru', $('.cmdline:not(.used)'))" 
+                                  >ru</span>
+                        `);
+                        output(`Set English language<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class   = "link" 
+                                       onclick = "keyboardInputEmission('changelang en', $('.cmdline:not(.used)'))" 
+                                 >en</span>
+                        `);
+                        break;
+                    case 'ru':
+                    case 'en':
+                        await setLanguage(args[0]);
+                        break;
+                    default:
+                        output(`changelang: «${args[0] ? args[0] : ''}» is not a changelang command. See 'changelang --help'.`)
+                }
+                break;
             default:
                 if (cmd) {
                     output(cmd + ': command not found');
@@ -239,6 +261,7 @@ E[:]||||[:]3
             output(`<div>${new Date()}</div>`);
         },
         output,
-        pressingEnter
+        pressingEnter,
+        history_
     }
 };

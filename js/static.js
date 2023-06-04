@@ -10,6 +10,7 @@ const terminalCommands = [
     'experience',
     'git',
     'easteregg',
+    // 'changelang',
 ];
 
 const defaultTextPrintTime = 60;
@@ -130,7 +131,7 @@ const startDateInCurrentPost      = '2022-12-31',
 
 const experience = [
     `
-        Between <span style="color: #c4c03d">June 2018</span> and <span style="color: #c4c03d">July 2021</span> (work experience: 3 years 9 mouths), I worked as a technical support specialist.<br>
+        ${i18next.t('Between')} <span style="color: #c4c03d">June 2018</span> and <span style="color: #c4c03d">July 2021</span> (work experience: 3 years 9 mouths), I worked as a technical support specialist.<br>
         <span style="color: #3daac4">My responsibilities was:</span><br>
         &nbsp;&nbsp;• Registration of applications from customers;<br>
         &nbsp;&nbsp;• Communication with customers;<br>
@@ -144,7 +145,7 @@ const experience = [
         &nbsp;&nbsp;• Preparation of software and hardware.<br>
     `,
     `
-        Between <span style="color: #c4c03d">August 2021</span> and <span style="color: #c4c03d">January 2023</span> (work experience: 1 years 6 mouths), I worked as a Full-stack developer.<br>
+        ${i18next.t('Between')} <span style="color: #c4c03d">August 2021</span> and <span style="color: #c4c03d">January 2023</span> (work experience: 1 years 6 mouths), I worked as a Full-stack developer.<br>
         <span style="color: #3daac4">My responsibilities was:</span><br>
         &nbsp;&nbsp;• Design and development of new functionality according to the terms of reference;<br>
         &nbsp;&nbsp;• Full-stack support for Web-applications;<br>
@@ -156,7 +157,7 @@ const experience = [
         &nbsp;&nbsp;• The deployment of Web-applications and the necessary environment of its work;<br>
     `,
     `
-        Between 
+        ${i18next.t('Between')} 
         <span style="color: #c4c03d">January 2023</span> and <span style="color: #c4c03d">present</span> 
         (work experience: ${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'year' : 'years'} 
                           ${workExperienceInCurrentPost.months} ${[0, 1].includes(workExperienceInCurrentPost.months) ? 'month' : 'months'}), 
@@ -172,3 +173,5 @@ const experience = [
         &nbsp;&nbsp;• Legacy code refactoring;<br>
     `
 ];
+
+const nonAlphabeticKeys = [112,  113,  114,  115,  116,  117,  118,  119,  120,  121,  122,  123,  48,  49,  50,  51,  52,  53,  54,  55,  56,  57,  27,  8,  9,  20,  16,  17,  91,  93,  18,  32,  13,  93,  44,  45,  19,  45,  36,  33,  46,  35,  34,  44,  37,  38,  40, 39];

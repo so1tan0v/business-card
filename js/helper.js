@@ -140,19 +140,21 @@ async function showBlackWindow() {
     location.reload();
 }
 
-function keyboardInputEmission(text, $input) {
+function keyboardInputEmission(text, $input = $('.cmdline:not(.used)')) {
     $input.prop('disabled', true);
     return new Promise(resolve => {
         let text_arr = text.split('');
         let i = 0;
         let _timer = null;
 
-        function _showLetter() {
+        async function _showLetter() {
             if (i >= text_arr.length) {
                 clearInterval(_timer);
                 $input.prop('disabled', false);
-                term.pressingEnter.call($input[0])
-                resolve(true);
+                await term.pressingEnter.call($input[0])
+                setTimeout(() => {
+                    resolve(true);
+                }, 100)
                 return;
             }
 
@@ -161,4 +163,31 @@ function keyboardInputEmission(text, $input) {
 
         _timer = setInterval(_showLetter, defaultTextPrintTime);
     })
+}
+
+function setSearchParams (params) {
+    for (let key in params) {
+        url.searchParams.set(key, params[key]);
+    }
+    window.history.pushState(null, '', url.toString());
+}
+
+async function setLanguage(lang = 'en') {
+    $('.cmdline:not(.used)').val('');
+    await sleep(300);
+    await keyboardInputEmission('clear');
+
+    langPage = lang;
+    setSearchParams({
+        lang: langPage
+    });
+    $('html').attr('lang', langPage);
+
+    if(term.history_) {
+        let history = term.history_.filter((item) => !item.includes('changelang') && item !== 'clear')
+        for(let command of history) {
+            await sleep(300);
+            await keyboardInputEmission(command);
+        }
+    }
 }
