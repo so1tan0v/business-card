@@ -19,20 +19,16 @@ $(async function() {
         }
     });
 
-     $dialog.on('dialogclose', function() {
-         showBlackWindow();
-     });
+    const starterWord = 'aboutfetch';
+    const $input = $('.cmdline');
+    const $prompt = $('.prompt');
 
-    $('.prompt').html(`[${username}] # `);
+    $prompt.html(`[${username}] # `);
 
     term = new Terminal('#input-line .cmdline', '#wrapper output');
     term.init();
 
-    const starterWord = 'aboutfetch';
-    let $input = $('.cmdline');
-
     await keyboardInputEmission(starterWord, $input)
-
     $(window).resize(function() {
         let heightPage  = $(window).height() * 0.9;
         let widthPage = $(window).width() * 0.9;
@@ -43,5 +39,17 @@ $(async function() {
         $dialog.dialog("option", "height", heightPage < 700
                                                     ? heightPage
                                                     : 700);
+    });
+
+    $(document).keyup(function(e) {
+        if($input.is(':focus'))
+            return;
+
+        $input
+            .val(e.originalEvent.key)
+            .focus();
+    })
+    $dialog.on('dialogclose', function() {
+        showBlackWindow();
     });
 });

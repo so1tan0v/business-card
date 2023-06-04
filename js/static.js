@@ -12,7 +12,7 @@ const terminalCommands = [
     'easteregg',
 ];
 
-const defaultTextPrintTime = 15;
+const defaultTextPrintTime = 60;
 
 const careerStartDate = '2021-07-01',
       workExperience  = getWorkExperience(careerStartDate);
@@ -35,22 +35,22 @@ const informationAboutMe = {
         title_color : '#3daac4'
     },
     'Programming languages': {
-        txt         : 'JavaScript, PHP',
+        txt         : "<a class='no-color' href='https://www.ecma-international.org/' target='_blank'>JavaScript</a>, <a class='no-color' href='https://www.typescriptlang.org/' target='_blank'>TypeScript</a>, <a class='no-color' href='https://www.php.net/' target='_blank'>PHP</a>",
         title_color : '#3daac4',
         leaves    : {
             'Frameworks' : {
                 title_color : '#c4c03d',
                 leaves      : {
-                    'JavaScript': {
-                        txt         : 'jQuery',
+                    "<a class='no-color' href='https://www.ecma-international.org/' target='_blank'>JavaScript</a>": {
+                        txt         : `<a href='https://jquery.com/' target='_blank'>jQuery</a>, <a href='https://dhtmlx.com/' target="_blank">dhtmlx</a>, <a href='https://react.dev/' target="_blank">ReactJS</a>`,
                         title_color : '#c4733d'
                     },
-                    'NodeJS': {
-                        txt         : 'Express, Sequelize',
+                    "<a class='no-color' href='https://nodejs.org/' target='_blank'>NodeJS</a>": {
+                        txt         : `<a href='https://expressjs.com/' target='_blank'>Express</a>, <a href='https://www.fastify.io/' target='_blank'>Fasty</a>, <a href='https://sequelize.org/' target='_blank'>Sequelize</a>, <a href='https://github.com/yagop/node-telegram-bot-api' target='_blank'>Node-telegram-bot-api</a>`,
                         title_color : '#c4733d'
                     },
-                    'PHP': {
-                        txt         : 'Symfony',
+                    "<a class='no-color' href='https://www.php.net/' target='_blank'>PHP</a>": {
+                        txt         : `<a href='https://symfony.com/' target='_blank'>Symfony</a>`,
                         title_color : '#c4733d'
                     },
                 }
@@ -58,11 +58,11 @@ const informationAboutMe = {
             'Language versions': {
                 title_color : '#c4c03d',
                 leaves      : {
-                    'JavaScript': {
+                    "<a class='no-color' href='https://www.ecma-international.org/' target='_blank'>JavaScript</a>": {
                         txt         : 'ES6',
                         title_color : '#c4733d'
                     },
-                    'PHP': {
+                    "<a class='no-color' href='https://www.php.net/' target='_blank'>PHP</a>": {
                         txt         : '5.6, 7.4, 8.1',
                         title_color : '#c4733d'
                     },
@@ -71,11 +71,11 @@ const informationAboutMe = {
         }
     },
     'Databases': {
-        txt         : `MySQL, PostgreSQL`,
+        txt         : `<a href='https://www.mysql.com/' target='_blank'>MySQL</a>, <a href='https://www.postgresql.org/' target='_blank'>PostgreSQL</a>`,
         title_color : '#3daac4',
     },
     'Web servers': {
-        txt         : `Apache, Nginx`,
+        txt         : `<a href='https://httpd.apache.org/' target='_blank'>Apache</a>, <a href='https://www.nginx.com/' target='_blank'>Nginx</a>`,
         title_color : '#3daac4',
     }
 }
@@ -98,13 +98,21 @@ const gitGub = {
         {
             name: 'business-card-navigation-page (jQuery)',
             link: 'https://github.com/so1tan0v/business-card-navigation-page'
-        }
+        },
+        {
+            name: 'log-checker-frontend (ReactJS)',
+            link: 'https://github.com/so1tan0v/log-checker-frontend'
+        },
+        {
+            name: 'log-checker-backend (NodeJS, Fasty)',
+            link: 'https://github.com/so1tan0v/log-checker-backend'
+        },
     ]
 }
 
 const links = {
     'E-mail': {
-        txt         : `<a href="mailto:so1tan0v@gmail.com" target="_blank"> so1tan0v@gmail.com</a>`,
+        txt         : `<a href="mailto:so1tan0v@yandex.ru" target="_blank"> so1tan0v@yandex.ru</a>`,
         title_color : '#3daac4',
     },
     'Telegram': {

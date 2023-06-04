@@ -159,6 +159,6 @@ function keyboardInputEmission(text, $input) {
             $input.val($input.val() + text_arr[i++]);
         }
 
-        _timer = setInterval(_showLetter, 70);
+        _timer = setInterval(_showLetter, defaultTextPrintTime);
     })
 }

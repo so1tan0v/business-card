@@ -145,6 +145,11 @@ pre {
     z-index: 100;
 }
 
+a.no-color {
+    color: inherit!important;
+    font-weight: inherit!important;
+}
+
 a, .link {
     text-decoration: none!important;
     color: rgb(92, 215, 184)!important;
