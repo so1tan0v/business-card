@@ -39,7 +39,7 @@ const informationAboutMe = {
         txt         : "<a class='no-color' href='https://www.ecma-international.org/' target='_blank'>JavaScript</a>, <a class='no-color' href='https://www.typescriptlang.org/' target='_blank'>TypeScript</a>, <a class='no-color' href='https://www.php.net/' target='_blank'>PHP</a>",
         title_color : '#3daac4',
         leaves    : {
-            'Frameworks' : {
+            'Frameworks/Library' : {
                 title_color : '#c4c03d',
                 leaves      : {
                     "<a class='no-color' href='https://www.ecma-international.org/' target='_blank'>JavaScript</a>": {
@@ -47,7 +47,7 @@ const informationAboutMe = {
                         title_color : '#c4733d'
                     },
                     "<a class='no-color' href='https://nodejs.org/' target='_blank'>NodeJS</a>": {
-                        txt         : `<a href='https://expressjs.com/' target='_blank'>Express</a>, <a href='https://www.fastify.io/' target='_blank'>Fasty</a>, <a href='https://sequelize.org/' target='_blank'>Sequelize</a>, <a href='https://github.com/yagop/node-telegram-bot-api' target='_blank'>Node-telegram-bot-api</a>`,
+                        txt         : `<a href='https://expressjs.com/' target='_blank'>Express</a>, <a href='https://www.fastify.io/' target='_blank'>Fasty</a>, <a href='https://sequelize.org/' target='_blank'>Sequelize</a>`,
                         title_color : '#c4733d'
                     },
                     "<a class='no-color' href='https://www.php.net/' target='_blank'>PHP</a>": {
@@ -60,7 +60,7 @@ const informationAboutMe = {
                 title_color : '#c4c03d',
                 leaves      : {
                     "<a class='no-color' href='https://www.ecma-international.org/' target='_blank'>JavaScript</a>": {
-                        txt         : 'ES6',
+                        txt         : `ES6, <a class='no-color' target='_blank'  href='https://www.typescriptlang.org/'>TypeScript</a>`,
                         title_color : '#c4733d'
                     },
                     "<a class='no-color' href='https://www.php.net/' target='_blank'>PHP</a>": {
@@ -131,8 +131,8 @@ const startDateInCurrentPost      = '2022-12-31',
 
 const experience = [
     `
-        ${i18next.t('Between')} <span style="color: #c4c03d">June 2018</span> and <span style="color: #c4c03d">July 2021</span> (work experience: 3 years 9 mouths), I worked as a technical support specialist.<br>
-        <span style="color: #3daac4">My responsibilities was:</span><br>
+        Between <span style="color: #c4c03d">June 2018</span> and <span style="color: #c4c03d">July 2021</span> (work experience: 3 years 9 mouths), I worked as a technical support specialist.<br>
+        <span style="color: #3daac4">My responsibilities were:</span><br>
         &nbsp;&nbsp;• Registration of applications from customers;<br>
         &nbsp;&nbsp;• Communication with customers;<br>
         &nbsp;&nbsp;• Solving problems encountered by customers;<br>
@@ -145,8 +145,8 @@ const experience = [
         &nbsp;&nbsp;• Preparation of software and hardware.<br>
     `,
     `
-        ${i18next.t('Between')} <span style="color: #c4c03d">August 2021</span> and <span style="color: #c4c03d">January 2023</span> (work experience: 1 years 6 mouths), I worked as a Full-stack developer.<br>
-        <span style="color: #3daac4">My responsibilities was:</span><br>
+        Between <span style="color: #c4c03d">August 2021</span> and <span style="color: #c4c03d">January 2023</span> (work experience: 1 years 6 mouths), I worked as a Full-stack developer.<br>
+        <span style="color: #3daac4">My responsibilities were:</span><br>
         &nbsp;&nbsp;• Design and development of new functionality according to the terms of reference;<br>
         &nbsp;&nbsp;• Full-stack support for Web-applications;<br>
         &nbsp;&nbsp;• Integration of Web-applications with external services;<br>
@@ -157,12 +157,12 @@ const experience = [
         &nbsp;&nbsp;• The deployment of Web-applications and the necessary environment of its work;<br>
     `,
     `
-        ${i18next.t('Between')} 
+        Between 
         <span style="color: #c4c03d">January 2023</span> and <span style="color: #c4c03d">present</span> 
         (work experience: ${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'year' : 'years'} 
                           ${workExperienceInCurrentPost.months} ${[0, 1].includes(workExperienceInCurrentPost.months) ? 'month' : 'months'}), 
         I work as a TeamLead / Full-stack Engineer.<br>
-        <span style="color: #3daac4">My responsibilities is:</span><br>
+        <span style="color: #3daac4">My responsibilities are:</span><br>
         &nbsp;&nbsp;• Organization of the work of the WEB development department;<br>
         &nbsp;&nbsp;• Design and development of new functionality according to the terms of reference;<br>
         &nbsp;&nbsp;• Coordination of customer requirements;<br>
