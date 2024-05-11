@@ -65,7 +65,7 @@ const informationAboutMe = {
                 title_color : '#c4c03d',
                 leaves      : {
                     [`${createAnchor('NodeJS', 'https://nodejs.org/', ['no-color'])}`]: {
-                        txt         : `${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('Sequalize', 'https://sequelize.org/')}`,
+                        txt         : `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('Sequalize', 'https://sequelize.org/')}`,
                         title_color : '#c4733d'
                     },
                     [`${createAnchor('PHP', 'https://www.php.net/', ['no-color'])}`]: {
