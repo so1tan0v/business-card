@@ -46,12 +46,12 @@ function getAllInformationAboutMe() {
         }
     }
 
-    if(myPhoto) {
+    if(asciiImage) {
         html = `
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-xl-5 align-items-sm-center justify-content-center" style="display: inherit;">
-                        ${myPhoto}
+                        ${asciiImage}
                     </div>
                     <div class="col-md-12 col-xl-7 p-0 pt-2 m-0">
                         ${info}
@@ -127,10 +127,6 @@ async function showBlackWindow() {
     $('.black-screen').show();
 
     $('#system-info').text(navigator.appVersion);
-    await asyncTyped('#typed', `You can't close the terminal. Permission denied.`, {
-        typeSpeed  : 20,
-        showCursor : false
-    })
 
     $('#timer-div').show();
     await asyncTyped('#timer', ['3', '2', '1', '0'], {
@@ -191,4 +187,8 @@ async function setLanguage(lang = 'en') {
             await keyboardInputEmission(command);
         }
     }
+}
+
+function createAnchor(titleName, url, classNames = [''], target = '_blank',) {
+    return `<a class="${classNames.join(' ')}" href='${url}' target='${target}'>${titleName}</a>`
 }

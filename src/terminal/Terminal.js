@@ -167,12 +167,20 @@ let Terminal = function(cmdLineContainer, outputContainer) {
             case 'aboutfetch':
             case 'me':
                 let infoAboutMe = getAllInformationAboutMe();
-                output(infoAboutMe);
-                const help = `<span class   = "link" 
-                                    onclick = "keyboardInputEmission('help', $('.cmdline:not(.used)'))" 
-                              >help</span>`;
+                const help =
+                    `<span class   = "link" ` +
+                        `onclick = "keyboardInputEmission('help', $('.cmdline:not(.used)'))" ` +
+                    `>help</span>`;
+                const exp =
+                    `<span class   = "link" ` +
+                        `onclick = "keyboardInputEmission('experience', $('.cmdline:not(.used)'))" ` +
+                    `>experience</span> `;
 
+                output(infoAboutMe);
                 output(`<div>${new Date()}<br>Enter or click "${help}" for more information.</div>`);
+
+                output(`<div>Do you want to see my experience? Enter or click "${exp}" for more information</div>`);
+
                 break;
             case 'experience':
                 let $prompt = $('.prompt');
@@ -292,7 +300,6 @@ E[:]||||[:]3
     return {
         init: function() {
             output(navigator?.appVersion);
-            output(`<div>${new Date()}</div>`);
         },
         output,
         pressingEnter,

@@ -44,11 +44,11 @@ $(async function() {
         let widthPage = $(window).width() * 0.9;
 
         $dialog.dialog("option", "width", widthPage < 1100
-                                                    ? widthPage
-                                                    : 1100);
+            ? widthPage
+            : 1100);
         $dialog.dialog("option", "height", heightPage < 700
-                                                    ? heightPage
-                                                    : 700);
+            ? heightPage
+            : 700);
     });
 
     $(document).keyup(function(e) {

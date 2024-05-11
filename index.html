@@ -4,15 +4,15 @@
         <meta content="width=device-width, user-scalable=yes" name="viewport">
         <meta name="google" content="notranslate" />
         <title>solt@about:~</title>
-        <link rel="icon" type="image/x-icon" href="images/favicon.ico?ver=8">
+        <link rel="icon" type="image/x-icon" href="src/static/images/favicon.ico?ver=9">
 
-        <link href="css/fonts.css?ver=8"                         rel="stylesheet" type="text/css" />
-        <link href="css/main.css?ver=8"                          rel="stylesheet" type="text/css" />
-        <link href="css/scroller.css?ver=8"                      rel="stylesheet" type="text/css" />
-        <link href="css/framework/bootstrap.css?ver=8"           rel="stylesheet" type="text/css" />
-        <link href="css/framework/jquery-ui.css?ver=8"           rel="stylesheet" type="text/css" />
-        <link href="css/framework/jquery-ui.structure.css?ver=8" rel="stylesheet" type="text/css" />
-        <link href="css/framework/jquery-ui.theme.css?ver=8"     rel="stylesheet" type="text/css" />
+        <link href="src/static/css/fonts.css?ver=9"                         rel="stylesheet" type="text/css" />
+        <link href="src/static/css/main.css?ver=9"                          rel="stylesheet" type="text/css" />
+        <link href="src/static/css/scroller.css?ver=9"                      rel="stylesheet" type="text/css" />
+        <link href="src/static/css/framework/bootstrap.css?ver=9"           rel="stylesheet" type="text/css" />
+        <link href="src/static/css/framework/jquery-ui.css?ver=9"           rel="stylesheet" type="text/css" />
+        <link href="src/static/css/framework/jquery-ui.structure.css?ver=9" rel="stylesheet" type="text/css" />
+        <link href="src/static/css/framework/jquery-ui.theme.css?ver=9"     rel="stylesheet" type="text/css" />
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript" >
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -25,7 +25,7 @@
                 clickmap:true,
                 trackLinks:true,
                 accurateTrackBounce:true,
-                webvisor:true
+                webvisor:true-
             });
         </script>
         <noscript><div><img src="https://mc.yandex.ru/watch/92946602" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
@@ -48,20 +48,22 @@
 
         <div class="black-screen" style="display: none;">
             <div class="p-2" id="system-info"></div>
-            <div class="p-2" id="typed"></div>
+            <div class="p-2" id="typed">You can't close the terminal. Permission denied.</div>
             <div class="p-2" id="timer-div" style="display: none;">
                 Your page will reload: <span id="timer"></span>
             </div>
         </div>
 
-        <script src="js/framework/jquery-3-6-0.js?ver=8"></script>
-        <script src="js/framework/jquery-ui.js?ver=8"></script>
-        <script src="js/framework/terminal.js?ver=8"></script>
-        <script src="js/framework/typed.umd.js?ver=8"></script>
-        <script src="js/helper.js?ver=8"></script>
-        <script src="js/myPhoto.js?ver=8"></script>
-        <script src="js/class/Terminal.js?ver=8"></script>
-        <script src="js/static.js?ver=8"></script>
-        <script src="js/index.js?ver=8"></script>
+        <script src="src/libraries/jquery-3-6-0.js?ver=9"></script>
+        <script src="src/libraries/jquery-ui.js?ver=9"></script>
+        <script src="src/libraries/terminal.js?ver=9"></script>
+        <script src="src/libraries/typed.umd.js?ver=9"></script>
+
+        <script src="src/app.helper.js?ver=9"></script>
+        <script src="src/static/ascii.image.js?ver=9"></script>
+        <script src="src/terminal/Terminal.js?ver=9"></script>
+
+        <script src="src/app.config.js?ver=9"></script>
+        <script src="src/app.js?ver=9"></script>
     </body>
 </html>
