@@ -1,0 +1,23 @@
+{
+  "name": "business-card",
+  "version": "1.0.0",
+  "description": "Business card about a person",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/so1tan0v/about-me-page.git"
+  },
+  "author": "Aleksandr Soltanov <so1tan0v@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/so1tan0v/about-me-page/issues"
+  },
+  "homepage": "https://github.com/so1tan0v/about-me-page#readme",
+  "devDependencies": {
+    "prettier": "3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0"
+  }
+}

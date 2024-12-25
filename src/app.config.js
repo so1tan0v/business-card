@@ -1,155 +1,148 @@
 const username = 'so1tan0v@about',
-    defaultTextPrintTime = 60,
-    careerStartDate = '2020-12-01',
-    workExperience  = getWorkExperience(careerStartDate),
-    startDateInCurrentPost      = '2024-07-01',
-    workExperienceInCurrentPost = getWorkExperience(startDateInCurrentPost),
-    nonAlphabeticKeys = [112,  113,  114,  115,  116,  117,  118,  119,  120,  121,  122,  123,  48,  49,  50,  51,  52,  53,  54,  55,  56,  57,  27,  8,  9,  20,  16,  17,  91,  93,  18,  32,  13,  93,  44,  45,  19,  45,  36,  33,  46,  35,  34,  44,  37,  38,  40, 39],
-    terminalCommands = [
-        'help',
-        'clear',
-        'date',
-        'echo',
-        'uname',
-        'aboutfetch',
-        'experience',
-        'git',
-        'easteregg',
-    ];
+  defaultTextPrintTime = 60,
+  careerStartDate = '2020-12-01',
+  workExperience = getWorkExperience(careerStartDate),
+  startDateInCurrentPost = '2024-07-01',
+  workExperienceInCurrentPost = getWorkExperience(startDateInCurrentPost),
+  nonAlphabeticKeys = [
+    112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 27, 8, 9, 20,
+    16, 17, 91, 93, 18, 32, 13, 93, 44, 45, 19, 45, 36, 33, 46, 35, 34, 44, 37, 38, 40, 39
+  ],
+  terminalCommands = ['help', 'clear', 'date', 'echo', 'uname', 'aboutfetch', 'experience', 'git', 'easteregg'];
 
 const informationAboutMe = {
-    'name': {
-        txt        : `<span style="color: #3daac4">Alexander</span>@<span style="color: #3daac4">Soltanov</span>`,
-        show_title : false
-    },
-    'Position': {
-        txt         : `Lead Developer / Middle Software Engineer`,
-        title_color : '#3daac4',
-    },
-    'Work experience': {
-        txt         : `
+  name: {
+    txt: `<span style="color: #3daac4">Alexander</span>@<span style="color: #3daac4">Soltanov</span>`,
+    show_title: false
+  },
+  Position: {
+    txt: `Lead Developer / Middle Software Engineer`,
+    title_color: '#3daac4'
+  },
+  'Work experience': {
+    txt: `
             ${workExperience.years} ${[0, 1].includes(workExperience.years) ? 'year' : 'years'} 
             ${workExperience.months} ${[0, 1].includes(workExperience.months) ? 'month' : 'months'}
         `,
-        title_color : '#3daac4'
-    },
-    'Programming languages': {
-        title_color : '#3daac4',
-        leaves    : {
-            'Main programming language': {
-                txt: `${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('JavaScript', 'https://www.ecma-international.org/')}`,
-                title_color : '#d7d346',
-            },
-            'Second programming language': {
-                txt: `${createAnchor('PHP', 'https://www.php.net/')}`,
-                title_color : '#d7d346',
-            },
-            'Language versions': {
-                title_color : '#c4c03d',
-                leaves      : {
-                    [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
-                        txt         : `>=14`,
-                        title_color : '#c4733d'
-                    },
-                    [`${createAnchor('JavaScript', 'https://www.ecma-international.org/', ['no-color'])}`]: {
-                        txt         : `ES2022`,
-                        title_color : '#c4733d'
-                    },
-                    [`${createAnchor('PHP', 'https://www.php.net/', ['no-color'])}`]: {
-                        txt         : '5.6, 7.4, 8.1',
-                        title_color : '#c4733d'
-                    },
-                }
-            },
-            'Frameworks/Library' : {
-                title_color : '#c4c03d',
-                leaves      : {
-                    [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
-                        txt         : `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('Sequalize', 'https://sequelize.org/')}`,
-                        title_color : '#c4733d'
-                    },
-                    [`${createAnchor('JavaScript', 'https://www.ecma-international.org/', ['no-color'])}`]: {
-                        txt         : `${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('React', 'https://react.dev/')}, ${createAnchor('jQuery', 'https://jquery.com/')}, ${createAnchor('dhtmlx', 'https://dhtmlx.com/')}, ${createAnchor('RxJS', 'https://rxjs.dev/')}`,
-                        title_color : '#c4733d'
-                    },
-                    [`${createAnchor('PHP', 'https://www.php.net/', ['no-color'])}`]: {
-                        txt         : `${createAnchor('Symfony', 'https://symfony.com/')}`,
-                        title_color : '#c4733d'
-                    },
-                }
-            },
+    title_color: '#3daac4'
+  },
+  'Programming languages': {
+    title_color: '#3daac4',
+    leaves: {
+      'Main programming language': {
+        txt: `${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('JavaScript', 'https://www.ecma-international.org/')}`,
+        title_color: '#d7d346'
+      },
+      'Second programming language': {
+        txt: `${createAnchor('PHP', 'https://www.php.net/')}`,
+        title_color: '#d7d346'
+      },
+      'Language versions': {
+        title_color: '#c4c03d',
+        leaves: {
+          [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
+            txt: `>=14`,
+            title_color: '#c4733d'
+          },
+          [`${createAnchor('JavaScript', 'https://www.ecma-international.org/', ['no-color'])}`]: {
+            txt: `ES2022`,
+            title_color: '#c4733d'
+          },
+          [`${createAnchor('PHP', 'https://www.php.net/', ['no-color'])}`]: {
+            txt: '5.6, 7.4, 8.1',
+            title_color: '#c4733d'
+          }
         }
-    },
-    'Databases': {
-        title_color : '#3daac4',
-        leaves      : {
-            'Row oriented' : {
-                txt: `${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('SQLite', 'https://www.sqlite.org/')}`,
-                title_color : '#c4c03d',
-            },
-            'Column oriented': {
-                txt: `${createAnchor('ClickHouse', 'https://clickhouse.com/')}`,
-                title_color : '#c4c03d',
-            },
-            'Document oriented': {
-                txt: `${createAnchor('MongoDB', 'https://www.mongodb.com/')}`,
-                title_color : '#c4c03d',
-            }
-        },
-    },
-    'Event/message brokers': {
-        txt         : `${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}`,
-        title_color : '#3daac4',
-    },
-    'Web servers': {
-        txt         : `${createAnchor('Apache', 'https://httpd.apache.org/')}, ${createAnchor('Nginx', 'https://www.nginx.com/')}`,
-        title_color : '#3daac4',
-    },
-    'OS-level virtualization': {
-        txt: `${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Podman', 'https://podman.io/')}`,
-        title_color : '#3daac4',
+      },
+      'Frameworks/Library': {
+        title_color: '#c4c03d',
+        leaves: {
+          [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
+            txt: `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('Sequalize', 'https://sequelize.org/')}`,
+            title_color: '#c4733d'
+          },
+          [`${createAnchor('JavaScript', 'https://www.ecma-international.org/', ['no-color'])}`]: {
+            txt: `${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('React', 'https://react.dev/')}, ${createAnchor('jQuery', 'https://jquery.com/')}, ${createAnchor('dhtmlx', 'https://dhtmlx.com/')}, ${createAnchor('RxJS', 'https://rxjs.dev/')}`,
+            title_color: '#c4733d'
+          },
+          [`${createAnchor('PHP', 'https://www.php.net/', ['no-color'])}`]: {
+            txt: `${createAnchor('Symfony', 'https://symfony.com/')}`,
+            title_color: '#c4733d'
+          }
+        }
+      }
     }
-}
+  },
+  Databases: {
+    title_color: '#3daac4',
+    leaves: {
+      'Row oriented': {
+        txt: `${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('SQLite', 'https://www.sqlite.org/')}`,
+        title_color: '#c4c03d'
+      },
+      'Column oriented': {
+        txt: `${createAnchor('ClickHouse', 'https://clickhouse.com/')}`,
+        title_color: '#c4c03d'
+      },
+      'Document oriented': {
+        txt: `${createAnchor('MongoDB', 'https://www.mongodb.com/')}`,
+        title_color: '#c4c03d'
+      }
+    }
+  },
+  'Event/message brokers': {
+    txt: `${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}`,
+    title_color: '#3daac4'
+  },
+  'Web servers': {
+    txt: `${createAnchor('Apache', 'https://httpd.apache.org/')}, ${createAnchor('Nginx', 'https://www.nginx.com/')}`,
+    title_color: '#3daac4'
+  },
+  'OS-level virtualization': {
+    txt: `${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Podman', 'https://podman.io/')}`,
+    title_color: '#3daac4'
+  }
+};
 
 const gitGub = {
-    link: 'https://github.com/so1tan0v',
-    projects: [
-        {
-            name: 'business-card (jQuery)',
-            link: 'https://github.com/so1tan0v/business-card'
-        },
-        {
-            name: 'business-card-navigation-page (jQuery)',
-            link: 'https://github.com/so1tan0v/business-card-navigation-page'
-        },
-        {
-            name: 'log-checker-frontend (React, TypeScript)',
-            link: 'https://github.com/so1tan0v/log-checker-frontend'
-        },
-        {
-            name: 'log-checker-backend (Node.js, TypeScript, Fastify)',
-            link: 'https://github.com/so1tan0v/log-checker-backend'
-        },
-    ]
-}
+  link: 'https://github.com/so1tan0v',
+  projects: [
+    {
+      name: 'business-card (jQuery)',
+      link: 'https://github.com/so1tan0v/business-card'
+    },
+    {
+      name: 'business-card-navigation-page (jQuery)',
+      link: 'https://github.com/so1tan0v/business-card-navigation-page'
+    },
+    {
+      name: 'log-checker-frontend (React, TypeScript)',
+      link: 'https://github.com/so1tan0v/log-checker-frontend'
+    },
+    {
+      name: 'log-checker-backend (Node.js, TypeScript, Fastify)',
+      link: 'https://github.com/so1tan0v/log-checker-backend'
+    }
+  ]
+};
 
 const links = {
-    'E-mail': {
-        txt         : `${createAnchor('@so1tan0v', 'mailto:so1tan0v@yandex.ru')}`,
-        title_color : '#3daac4',
-    },
-    'Telegram': {
-        txt         : `${createAnchor('@so1tan0v', 'https://t.me/so1tan0v')}`,
-        title_color : '#3daac4',
-    },
-    'GitHub': {
-        txt         : `${createAnchor('@so1tan0v', gitGub.link)}`,
-        title_color : '#3daac4',
-    }
-}
+  'E-mail': {
+    txt: `${createAnchor('@so1tan0v', 'mailto:so1tan0v@yandex.ru')}`,
+    title_color: '#3daac4'
+  },
+  Telegram: {
+    txt: `${createAnchor('@so1tan0v', 'https://t.me/so1tan0v')}`,
+    title_color: '#3daac4'
+  },
+  GitHub: {
+    txt: `${createAnchor('@so1tan0v', gitGub.link)}`,
+    title_color: '#3daac4'
+  }
+};
 
 const experience = [
-    `
+  `
         Between <span style="color: #c4c03d">June 2018</span> and <span style="color: #c4c03d">December 2020</span> (work experience: 2 years 5 mouths), I worked as a technical support specialist.<br>
         LTC. Vistamed: Technical support<br>
         <span style="color: #3daac4">My responsibilities were:</span><br>
@@ -164,7 +157,7 @@ const experience = [
         &nbsp;&nbsp;• Development of templates of printed forms and reports;<br>
         &nbsp;&nbsp;• Preparation of software and hardware.<br>
     `,
-    `
+  `
         Between <span style="color: #c4c03d">December 2020</span> and <span style="color: #c4c03d">January 2023</span> (work experience: 2 years 2 mouths), I worked as a Full-stack developer.<br>
         LTC. Vistamed: Backend developer<br>
         <span style="color: #3daac4">My responsibilities were:</span><br>
@@ -177,7 +170,7 @@ const experience = [
         &nbsp;&nbsp;• Increase the resistance of Web-applications to loads;<br>
         &nbsp;&nbsp;• The deployment of Web-applications and the necessary environment of its work;<br>
     `,
-    `
+  `
         Between 
         <span style="color: #c4c03d">January 2023</span> and <span style="color: #c4c03d">July 2024</span> 
         (work experience: 1 years 7 mouths), I worked as a Full-stack developer.<br>
@@ -194,7 +187,7 @@ const experience = [
         &nbsp;&nbsp;• Setting up CI/CD for projects;<br>
         &nbsp;&nbsp;• Coordination of customer requirements<br>
     `,
-    `
+  `
         Between 
         <span style="color: #c4c03d">July 2024</span> and <span style="color: #c4c03d">present</span> 
         (work experience: ${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'year' : 'years'} 
