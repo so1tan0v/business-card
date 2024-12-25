@@ -6,12 +6,14 @@ html, body {
     height: 100%!important;
     margin: 0;
 }
+
 body {
     font-size: 9pt!important;
-    font-family: Inconsolata, monospace!important;
+    font-family: Menlo, monospace!important;
     color: white!important;
     background: -webkit-linear-gradient(90deg, #113e4b,#282d33);
-    background: linear-gradient(90deg, #113e4b,#282d33);
+    /*background: linear-gradient(90deg, #113e4b,#282d33);*/
+    background: linear-gradient(60deg, #1f2324, #3d4551);
 }
 
 output {
@@ -154,4 +156,47 @@ a, .link {
     text-decoration: none!important;
     color: rgb(92, 215, 184)!important;
     font-weight: bold;
+}
+
+.ui-dialog {
+    border-radius: 15px!important;
+    padding-top: 0!important;
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
+.ui-dialog-titlebar {
+    border-color: rgba(10, 83, 190, 0)!important;
+    border-top-left-radius: 15px!important;
+    border-top-right-radius: 15px!important;
+    background: rgb(66, 68, 74) !important;
+}
+
+.ui-dialog-titlebar  {
+    text-align-last: center!important;
+    width: 100%!important;
+}
+
+.ui-dialog-titlebar #ui-id-1 {
+    width: 100%!important;
+}
+
+.ui-dialog-titlebar .ui-dialog-titlebar-close, .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
+    left: 17px;
+    border-radius: 100px !important;
+    top: 18px !important;
+    width: 14px !important;
+    height: 14px !important;
+    background: #ff5f57 !important;
+    border: 0;
+}
+
+.ui-dialog-titlebar-close .ui-button-icon {
+    display: none;
+}
+
+.ui-dialog-titlebar-close:hover .ui-button-icon {
+    display: block!important;
+    color: #be0a0a !important;
+    border: 0;
 }

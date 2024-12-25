@@ -174,7 +174,7 @@ let Terminal = function(cmdLineContainer, outputContainer) {
                 const exp =
                     `<span class   = "link" ` +
                         `onclick = "keyboardInputEmission('experience', $('.cmdline:not(.used)'))" ` +
-                    `>experience</span> `;
+                    `>experience</span>`;
 
                 output(infoAboutMe);
                 output(`<div>${new Date()}<br>Enter or click "${help}" for more information.</div>`);
@@ -297,9 +297,19 @@ E[:]||||[:]3
         output_.insertAdjacentHTML('beforeEnd', '<p>' + html + '</p>');
     }
 
+    function firstMessage(lastDateTime) {
+        return `
+            Last login: ${lastDateTime}<br>
+            Welcome to so1tan0v, the friendly interactive personal business card<br>
+            Type <span class   = "link" 
+                       onclick = "keyboardInputEmission('help', $('.cmdline:not(.used)'))" 
+                 >help</span> for instructions on how to use my business card
+        `
+    }
+
     return {
-        init: function() {
-            output(navigator?.appVersion);
+        init: function(lastVisit) {
+            output(firstMessage(lastVisit));
         },
         output,
         pressingEnter,
