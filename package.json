@@ -4,7 +4,8 @@
   "description": "Business card about a person",
   "main": "index.js",
   "scripts": {
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/so1tan0v/about-me-page#readme",
   "devDependencies": {
+    "husky": "^9.1.7",
     "prettier": "3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0"
   }
