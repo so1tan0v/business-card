@@ -16,7 +16,7 @@ const informationAboutMe = {
     show_title: false
   },
   Position: {
-    txt: `Lead Developer / Middle Software Engineer`,
+    txt: `Senior Software Engineer`,
     title_color: '#3daac4'
   },
   'Work experience': {
@@ -58,10 +58,10 @@ const informationAboutMe = {
         title_color: '#c4c03d',
         leaves: {
           [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
-            txt: `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('Sequalize', 'https://sequelize.org/')}`,
+            txt: `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('Sequalize', 'https://sequelize.org/')}, ${createAnchor('RxJS', 'https://rxjs.dev/')}`,
             title_color: '#c4733d'
           },
-          [`${createAnchor('JavaScript', 'https://www.ecma-international.org/', ['no-color'])}`]: {
+          [`${createAnchor('Frontend', 'https://www.ecma-international.org/', ['no-color'])}`]: {
             txt: `${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('React', 'https://react.dev/')}, ${createAnchor('jQuery', 'https://jquery.com/')}, ${createAnchor('dhtmlx', 'https://dhtmlx.com/')}, ${createAnchor('RxJS', 'https://rxjs.dev/')}`,
             title_color: '#c4733d'
           },
@@ -192,7 +192,7 @@ const experience = [
         <span style="color: #c4c03d">July 2024</span> and <span style="color: #c4c03d">present</span> 
         (work experience: ${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'year' : 'years'} 
                           ${workExperienceInCurrentPost.months} ${[0, 1].includes(workExperienceInCurrentPost.months) ? 'month' : 'months'}), 
-        LTC. K2T: Lead Developer<br>
+        LTC. K2T: Senior Software Engineer<br>
         <span style="color: #3daac4">My responsibilities are:</span><br>
         &nbsp;&nbsp;- Backend development of key features for the Breeze product, including:<br> 
         &nbsp;&nbsp; &nbsp;&nbsp;1. Organization management panel;<br> 
