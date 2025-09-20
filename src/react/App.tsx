@@ -61,7 +61,7 @@ export function App() {
     window.addEventListener('keyup', onKeyUp);
 
     return () => {
-      window.removeEventListener('keyup', onKeyUp)
+      window.removeEventListener('keyup', onKeyUp);
     };
   }, [nonAlphabeticKeys]);
 
@@ -112,7 +112,7 @@ export function App() {
     echoCommand(raw);
     setInput('');
 
-    if(!historyRef.current.includes(raw)) {
+    if (!historyRef.current.includes(raw)) {
       historyRef.current.push(raw);
       histPosRef.current = historyRef.current.length;
     }
@@ -214,7 +214,7 @@ export function App() {
       case 'experience':
         if (typeof config.experience === 'string') appendLine(config.experience as unknown as string);
         else
-          for (const item of (config.experience as unknown as string[])) {
+          for (const item of config.experience as unknown as string[]) {
             appendLine(item);
             await sleep(1000);
           }
@@ -269,7 +269,9 @@ export function App() {
       case '':
       case '-h':
       case '--help':
-        appendLine(`use: changelang [-h | --help]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command [arg]`);
+        appendLine(
+          `use: changelang [-h | --help]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command [arg]`
+        );
         appendLine(
           `Set Russian language<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="link" data-cmd="changelang ru">ru</span>`
         );
