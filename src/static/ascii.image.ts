@@ -2,7 +2,7 @@
  * You can create same image by this app https://manytools.org/hacker-tools/convert-images-to-ascii-art/go/
  * @type {string}
  */
-const asciiImage = `
+export const asciiImage = `
 <span class="ascii" 
       style="
            color          : white;
