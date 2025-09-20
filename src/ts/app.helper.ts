@@ -54,6 +54,7 @@ export function getAllInformationAboutMe(
   } else {
     html = info;
   }
+
   return html;
 }
 
@@ -61,8 +62,13 @@ export function parseInformationAboutMe(infoObject: Record<string, any>, layer =
   let html = '';
   for (let category in infoObject) {
     const categoryData = infoObject[category];
+
     let lineEdge = '';
-    if (layer) for (let i = 0; i < layer; i++) lineEdge += `&nbsp;&nbsp;`;
+    if (layer) {
+      for (let i = 0; i < layer; i++) {
+        lineEdge += `&nbsp;&nbsp;`
+      };
+    }
 
     const title = !(categoryData?.show_title === false)
       ? `
@@ -80,6 +86,7 @@ export function parseInformationAboutMe(infoObject: Record<string, any>, layer =
 
     html += lineEdge + title + txt;
   }
+
   return html;
 }
 

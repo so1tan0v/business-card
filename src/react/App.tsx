@@ -100,6 +100,8 @@ export function App() {
       Last login: ${lastVisit}<br>
       Welcome to so1tan0v, the friendly interactive personal business card<br>
       Type <span class="link" data-cmd="help">help</span> for instructions on how to use my business card
+      <br>
+      <br>
     `;
   }
 
@@ -205,7 +207,7 @@ export function App() {
       case 'me':
         appendLine(getAllInformationAboutMe(config.informationAboutMe as any, config.links as any, asciiImage));
         appendLine(
-          `<div>${new Date()}<br>Enter or click "<span class="link" data-cmd="help">help</span>" for more information.</div>`
+          `<div>${new Date()}<br>Enter or click "<span class="link" data-cmd="help">help</span>" for more information.</div><br>`
         );
         appendLine(
           `<div>Do you want to see my experience? Enter or click "<span class="link" data-cmd="experience">experience</span>" for more information</div>`
