@@ -66,8 +66,8 @@ export function parseInformationAboutMe(infoObject: Record<string, any>, layer =
     let lineEdge = '';
     if (layer) {
       for (let i = 0; i < layer; i++) {
-        lineEdge += `&nbsp;&nbsp;`
-      };
+        lineEdge += `&nbsp;&nbsp;`;
+      }
     }
 
     const title = !(categoryData?.show_title === false)
