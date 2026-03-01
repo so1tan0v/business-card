@@ -38,6 +38,15 @@ body.theme-light .mac-title {
   color: #333;
 }
 
+/* ASCII block: color follows theme */
+.ascii-block .ascii {
+  color: white !important;
+}
+
+body.theme-light .ascii-block .ascii {
+  color: #1e1e1e !important;
+}
+
 output {
   display: block !important;
 }

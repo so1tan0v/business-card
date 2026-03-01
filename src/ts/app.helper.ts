@@ -42,7 +42,7 @@ export function getAllInformationAboutMe(
     html = `
       <div class="container">
         <div class="row">
-          <div class="col-md-12 col-xl-5 align-items-sm-center justify-content-center" style="display: inherit;">
+          <div class="col-md-12 col-xl-5 align-items-sm-center justify-content-center ascii-block" style="display: inherit;">
             ${asciiImage}
           </div>
           <div class="col-md-12 col-xl-7 p-0 pt-2 m-0">
