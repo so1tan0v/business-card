@@ -98,7 +98,7 @@ export function App() {
   function firstMessage(lastVisit: string) {
     return `
       Last login: ${lastVisit}<br>
-      Welcome to so1tan0v, the friendly interactive personal business card<br>
+      Welcome to Alexander Soltanov's interactive personal business card<br>
       Type <span class="link" data-cmd="help">help</span> for instructions on how to use my business card
       <br>
       <br>
@@ -183,7 +183,7 @@ export function App() {
         break;
       case 'help':
         appendLine(
-          'This is a page about Alexander Soltanov.<br>In this terminal you can find out about me and my projects.'
+          'This is a page about Alexander Soltanov — Senior Node.js Engineer.<br>In this terminal you can find out about me and my projects.'
         );
         appendLine('Write a command or click on it!');
         appendLine(`
