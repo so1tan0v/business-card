@@ -114,7 +114,7 @@ export const config = {
     Tools: {
       txt: `${createAnchor('i18next', 'https://www.i18next.com/')}, ${createAnchor('Postman', 'https://www.postman.com/')}, ${createAnchor('Insomnia', 'https://insomnia.rest/')}, ${createAnchor('Yandex Tracker', 'https://tracker.yandex.com/')}`,
       title_color: '#3daac4'
-    },
+    }
   },
   gitHub: {
     link: 'https://github.com/so1tan0v',
