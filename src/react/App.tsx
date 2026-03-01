@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { asciiImage } from '../static/ascii.image';
 import { getAllInformationAboutMe, sleep } from '../ts/app.helper';
-import { config } from '../ts/appConfig';
+import { config } from '../ts/app.config';
 
 const LAST_VISIT_DATE = 'LAST_VISIT_DATE';
 

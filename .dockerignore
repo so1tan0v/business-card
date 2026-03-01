@@ -1,0 +1,6 @@
+# Dir
+.idea
+.husky
+.git
+node_modules
+dist

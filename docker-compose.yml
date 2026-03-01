@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: alex-business-card
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
