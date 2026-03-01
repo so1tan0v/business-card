@@ -20,6 +20,7 @@ export function App() {
   );
   const [soundOn, setSoundOn] = useState(() => localStorage.getItem(STORAGE_SOUND) !== 'false');
   const [matrixActive, setMatrixActive] = useState(false);
+  const [menuBarTime, setMenuBarTime] = useState(() => new Date());
 
   const inputRef = useRef<HTMLInputElement>(null);
   const typingTimerRef = useRef<number | null>(null);
@@ -100,6 +101,12 @@ export function App() {
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  useEffect(() => {
+    const tick = () => setMenuBarTime(new Date());
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
   }, []);
 
   useEffect(() => {
@@ -598,15 +605,45 @@ export function App() {
     };
   }, [matrixActive]);
 
+  const menuBarDateStr = menuBarTime.toLocaleDateString(undefined, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric'
+  });
+  const menuBarTimeStr = menuBarTime.toLocaleTimeString(undefined, {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+
   return (
     <div className="model">
-      {matrixActive && (
-        <div className="matrix-overlay" aria-hidden="true">
-          <canvas ref={matrixCanvasRef} />
-          <p className="matrix-hint">Press Escape to exit</p>
+      <header className="mac-menu-bar" role="banner">
+        <div className="mac-menu-bar-left">
+        <span className="mac-menu-bar-app"><b>Terminal</b></span>
+          <button
+            type="button"
+            className="mac-menu-bar-theme"
+            onClick={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+            aria-label={`Theme: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}`}
+          >
+            <span className="mac-menu-bar-theme-icon">{theme === 'dark' ? '☀' : '🌙'}</span>
+            <span className="mac-menu-bar-theme-label">{theme === 'dark' ? 'Light' : 'Dark'}</span>
+          </button>
         </div>
-      )}
-      <div className="mac-window">
+        <div className="mac-menu-bar-right">
+          <span className="mac-menu-bar-date"><b>{menuBarDateStr}</b></span>
+          <span className="mac-menu-bar-time"><b>{menuBarTimeStr}</b></span>
+        </div>
+      </header>
+      <div className="model-content">
+        {matrixActive && (
+          <div className="matrix-overlay" aria-hidden="true">
+            <canvas ref={matrixCanvasRef} />
+            <p className="matrix-hint">Press Escape to exit</p>
+          </div>
+        )}
+        <div className="mac-window">
         <div className="mac-titlebar">
           <div className="traffic-lights">
             <span className="light red" />
@@ -614,15 +651,6 @@ export function App() {
             <span className="light green" />
           </div>
           <div className="mac-title">{username}:~</div>
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            aria-label={`Current theme: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}`}
-          >
-            {theme === 'dark' ? '☀' : '🌙'}
-          </button>
         </div>
         <div className="mac-content">
           <div id="terminal-output">
@@ -719,6 +747,7 @@ export function App() {
               />
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
