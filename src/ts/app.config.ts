@@ -66,7 +66,7 @@ export const config = {
               txt: `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('WebSocket', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API')}, ${createAnchor('WebRTC', 'https://webrtc.org/')}`,
               title_color: '#c4733d'
             },
-            'Architecture': {
+            Architecture: {
               txt: `Microservices, Message-driven (${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}), Idempotency, Retry strategies, Graceful shutdown`,
               title_color: '#c4733d'
             }
@@ -124,7 +124,10 @@ export const config = {
     Telegram: { txt: `${createAnchor('@so1tan0v', 'https://t.me/so1tan0v')}`, title_color: '#3daac4' },
     WhatsApp: { txt: `${createAnchor('+7 (950) 030-62-46', 'https://wa.me/79500306246')}`, title_color: '#3daac4' },
     GitHub: { txt: `${createAnchor('@so1tan0v', 'https://github.com/so1tan0v')}`, title_color: '#3daac4' },
-    LinkedIn: { txt: `${createAnchor('@so1tan0v', 'https://www.linkedin.com/in/alexander-soltanov-a50a06294')}`, title_color: '#3daac4' }
+    LinkedIn: {
+      txt: `${createAnchor('@so1tan0v', 'https://www.linkedin.com/in/alexander-soltanov-a50a06294')}`,
+      title_color: '#3daac4'
+    }
   },
   experience: [
     `
