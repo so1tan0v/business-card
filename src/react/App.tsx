@@ -1,11 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { asciiImage } from '../static/ascii.image';
 import { config } from '../ts/app.config';
-import {
-  getAllInformationAboutMe,
-  sleep,
-  cowsayBubble,
-} from '../ts/app.helper';
+import { cowsayBubble, getAllInformationAboutMe, sleep } from '../ts/app.helper';
 
 const LAST_VISIT_DATE = 'LAST_VISIT_DATE';
 const STORAGE_THEME = 'terminal_theme';
@@ -16,8 +12,12 @@ export function App() {
   const [lang, setLang] = useState<string | null>(() => new URL(window.location.href).searchParams.get('lang'));
   const [input, setInput] = useState<string>('');
   const [lines, setLines] = useState<string[]>([]);
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem(STORAGE_THEME) as 'dark' | 'light') || (config.defaultTheme as 'dark' | 'light'));
-  const [typingSpeed, setTypingSpeed] = useState<'slow' | 'normal' | 'fast'>(() => (localStorage.getItem(STORAGE_SPEED) as 'slow' | 'normal' | 'fast') || 'normal');
+  const [theme, setTheme] = useState<'dark' | 'light'>(
+    () => (localStorage.getItem(STORAGE_THEME) as 'dark' | 'light') || (config.defaultTheme as 'dark' | 'light')
+  );
+  const [typingSpeed, setTypingSpeed] = useState<'slow' | 'normal' | 'fast'>(
+    () => (localStorage.getItem(STORAGE_SPEED) as 'slow' | 'normal' | 'fast') || 'normal'
+  );
   const [soundOn, setSoundOn] = useState(() => localStorage.getItem(STORAGE_SOUND) !== 'false');
   const [matrixActive, setMatrixActive] = useState(false);
 
@@ -404,7 +404,11 @@ export function App() {
     }
     if (file === 'contact.txt') {
       const links = config.links as Record<string, { txt: string }>;
-      appendLine(Object.entries(links).map(([k, v]) => `${k}: ${v.txt}`).join('<br>'));
+      appendLine(
+        Object.entries(links)
+          .map(([k, v]) => `${k}: ${v.txt}`)
+          .join('<br>')
+      );
       return;
     }
     if (match) {
@@ -470,7 +474,9 @@ export function App() {
   }
 
   function execSsh(args: string[]) {
-    appendLine('Connection refused. Try Telegram or email — see <span class="link" data-cmd="me">me</span> for contacts.');
+    appendLine(
+      'Connection refused. Try Telegram or email — see <span class="link" data-cmd="me">me</span> for contacts.'
+    );
   }
 
   function execEasteregg() {

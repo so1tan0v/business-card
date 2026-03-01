@@ -112,8 +112,6 @@ export function cowsayBubble(message: string): string {
   const maxLen = Math.max(...lines.map(l => l.length), 1);
   const top = ' ' + '_'.repeat(maxLen + 2);
   const bottom = ' ' + '-'.repeat(maxLen + 2);
-  const body = lines
-    .map(l => '| ' + l + ' '.repeat(Math.max(0, maxLen - l.length)) + ' |')
-    .join('\n');
+  const body = lines.map(l => '| ' + l + ' '.repeat(Math.max(0, maxLen - l.length)) + ' |').join('\n');
   return `${top}\n${body}\n${bottom}`;
 }

@@ -15,9 +15,34 @@ export const config = {
     16, 17, 91, 93, 18, 32, 13, 93, 44, 45, 19, 45, 36, 33, 46, 35, 34, 44, 37, 38, 40, 39
   ],
   terminalCommands: [
-    'help', 'clear', 'date', 'echo', 'uname', 'whoami', 'hostname', 'aboutfetch', 'me', 'experience', 'git',
-    'changelang', 'theme', 'speed', 'sound', 'ls', 'cat', 'fortune', 'neofetch', 'cowsay', 'ping', 'curl',
-    'ssh', 'matrix', 'resume', 'cv', 'contact', 'easteregg'
+    'help',
+    'clear',
+    'date',
+    'echo',
+    'uname',
+    'whoami',
+    'hostname',
+    'aboutfetch',
+    'me',
+    'experience',
+    'git',
+    'changelang',
+    'theme',
+    'speed',
+    'sound',
+    'ls',
+    'cat',
+    'fortune',
+    'neofetch',
+    'cowsay',
+    'ping',
+    'curl',
+    'ssh',
+    'matrix',
+    'resume',
+    'cv',
+    'contact',
+    'easteregg'
   ],
   defaultTheme: 'dark',
   speedPresets: { slow: 120, normal: 60, fast: 20 },
@@ -34,18 +59,18 @@ Experience: 5+ years. Node.js, TypeScript, NestJS, PostgreSQL, Redis, RabbitMQ, 
 Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   fortune: [
     'The best way to predict the future is to implement it. — Backend wisdom',
-    'There are only 10 types of people: those who understand binary and those who don\'t.',
+    "There are only 10 types of people: those who understand binary and those who don't.",
     'Node.js: I/O is not the bottleneck. Your code is.',
     'Cache invalidation is one of the two hard things in CS. — Phil Karlton',
     'First solve the problem. Then write the code. — John Johnson',
     'Microservices: when you want to turn a monolith into a distributed monolith.',
-    'St. Petersburg → Remote. Coffee → Code. Repeat.',
+    'St. Petersburg → Remote. Coffee → Code. Repeat.'
   ],
   neofetch: {
     user: 'so1tan0v',
     host: 'alex.soltanov.dev',
     os: 'Browser OS',
-    theme: 'Terminal Dark',
+    theme: 'Terminal Dark'
   },
   cowsayTemplate: `
   \\   ^__^
@@ -57,7 +82,7 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   easterEggs: [
     '🐧 sudo make me a sandwich → Make it yourself. (xkcd 149)',
     '🎹 The matrix has you. Run: matrix',
-    '🥚 There is no spoon. But there is npm install.',
+    '🥚 There is no spoon. But there is npm install.'
   ],
   informationAboutMe: {
     name: {
