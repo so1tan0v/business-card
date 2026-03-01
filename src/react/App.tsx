@@ -619,7 +619,9 @@ export function App() {
     <div className="model">
       <header className="mac-menu-bar" role="banner">
         <div className="mac-menu-bar-left">
-        <span className="mac-menu-bar-app"><b>Terminal</b></span>
+          <span className="mac-menu-bar-app">
+            <b>Terminal</b>
+          </span>
           <button
             type="button"
             className="mac-menu-bar-theme"
@@ -632,8 +634,12 @@ export function App() {
           </button>
         </div>
         <div className="mac-menu-bar-right">
-          <span className="mac-menu-bar-date"><b>{menuBarDateStr}</b></span>
-          <span className="mac-menu-bar-time"><b>{menuBarTimeStr}</b></span>
+          <span className="mac-menu-bar-date">
+            <b>{menuBarDateStr}</b>
+          </span>
+          <span className="mac-menu-bar-time">
+            <b>{menuBarTimeStr}</b>
+          </span>
         </div>
       </header>
       <div className="model-content">
@@ -644,110 +650,110 @@ export function App() {
           </div>
         )}
         <div className="mac-window">
-        <div className="mac-titlebar">
-          <div className="traffic-lights">
-            <span className="light red" />
-            <span className="light yellow" />
-            <span className="light green" />
+          <div className="mac-titlebar">
+            <div className="traffic-lights">
+              <span className="light red" />
+              <span className="light yellow" />
+              <span className="light green" />
+            </div>
+            <div className="mac-title">{username}:~</div>
           </div>
-          <div className="mac-title">{username}:~</div>
-        </div>
-        <div className="mac-content">
-          <div id="terminal-output">
-            {lines.map((html, idx) => (
-              <p className="m-0" key={idx} dangerouslySetInnerHTML={{ __html: html }} />
-            ))}
-          </div>
-          <div id="input-line" className="input-line">
-            <div className="prompt">[{username}] # </div>
-            <div>
-              <input
-                id="terminal-input"
-                ref={inputRef}
-                className="cmdline"
-                value={input}
-                aria-label="Terminal command input. Type a command and press Enter. Use Tab for completion, Arrow Up/Down for history."
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={e => {
-                  if (!['Enter', 'Tab', 'ArrowUp', 'ArrowDown', 'Meta', 'Control', 'Alt', 'Shift'].includes(e.key)) {
-                    playTick();
-                  }
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const trimmed = input.trim();
-                    if (trimmed) {
-                      handleEnter(trimmed);
-                    } else {
-                      echoCommand('');
+          <div className="mac-content">
+            <div id="terminal-output">
+              {lines.map((html, idx) => (
+                <p className="m-0" key={idx} dangerouslySetInnerHTML={{ __html: html }} />
+              ))}
+            </div>
+            <div id="input-line" className="input-line">
+              <div className="prompt">[{username}] # </div>
+              <div>
+                <input
+                  id="terminal-input"
+                  ref={inputRef}
+                  className="cmdline"
+                  value={input}
+                  aria-label="Terminal command input. Type a command and press Enter. Use Tab for completion, Arrow Up/Down for history."
+                  onChange={e => setInput(e.target.value)}
+                  onKeyDown={e => {
+                    if (!['Enter', 'Tab', 'ArrowUp', 'ArrowDown', 'Meta', 'Control', 'Alt', 'Shift'].includes(e.key)) {
+                      playTick();
                     }
-                    return;
-                  }
-                  if (e.key === 'Tab') {
-                    e.preventDefault();
-                    const trimmed = input.trim();
-                    if (!trimmed) {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      const trimmed = input.trim();
+                      if (trimmed) {
+                        handleEnter(trimmed);
+                      } else {
+                        echoCommand('');
+                      }
+                      return;
+                    }
+                    if (e.key === 'Tab') {
+                      e.preventDefault();
+                      const trimmed = input.trim();
+                      if (!trimmed) {
+                        return;
+                      }
+
+                      const matches = terminalCommands.filter(cmd => cmd.indexOf(trimmed) === 0);
+                      if (!matches.length) {
+                        return;
+                      }
+
+                      if (matches.length === 1) {
+                        setInput(matches[0]);
+
+                        return;
+                      }
+
+                      showCommandSuggestions(matches);
+
                       return;
                     }
 
-                    const matches = terminalCommands.filter(cmd => cmd.indexOf(trimmed) === 0);
-                    if (!matches.length) {
+                    if (e.key === 'ArrowUp') {
+                      e.preventDefault();
+                      if (!historyRef.current.length) {
+                        return;
+                      }
+
+                      if (histPosRef.current === undefined) {
+                        histPosRef.current = historyRef.current.length;
+                      }
+
+                      histPosRef.current = Math.max(0, (histPosRef.current ?? historyRef.current.length) - 1);
+                      setInput(historyRef.current[histPosRef.current] ?? '');
+
                       return;
                     }
 
-                    if (matches.length === 1) {
-                      setInput(matches[0]);
+                    if (e.key === 'ArrowDown') {
+                      e.preventDefault();
+                      if (!historyRef.current.length) {
+                        return;
+                      }
+
+                      histPosRef.current = Math.min(
+                        historyRef.current.length,
+                        (histPosRef.current ?? historyRef.current.length) + 1
+                      );
+
+                      const val =
+                        histPosRef.current === historyRef.current.length
+                          ? ''
+                          : (historyRef.current[histPosRef.current] ?? '');
+
+                      setInput(val);
 
                       return;
                     }
-
-                    showCommandSuggestions(matches);
-
-                    return;
-                  }
-
-                  if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    if (!historyRef.current.length) {
-                      return;
-                    }
-
-                    if (histPosRef.current === undefined) {
-                      histPosRef.current = historyRef.current.length;
-                    }
-
-                    histPosRef.current = Math.max(0, (histPosRef.current ?? historyRef.current.length) - 1);
-                    setInput(historyRef.current[histPosRef.current] ?? '');
-
-                    return;
-                  }
-
-                  if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    if (!historyRef.current.length) {
-                      return;
-                    }
-
-                    histPosRef.current = Math.min(
-                      historyRef.current.length,
-                      (histPosRef.current ?? historyRef.current.length) + 1
-                    );
-
-                    const val =
-                      histPosRef.current === historyRef.current.length
-                        ? ''
-                        : (historyRef.current[histPosRef.current] ?? '');
-
-                    setInput(val);
-
-                    return;
-                  }
-                }}
-                autoFocus
-                autoComplete="off"
-              />
+                  }}
+                  autoFocus
+                  autoComplete="off"
+                />
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
