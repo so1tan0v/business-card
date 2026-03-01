@@ -38,7 +38,6 @@ body.theme-light .mac-title {
   color: #333;
 }
 
-/* ASCII block: color follows theme */
 .ascii-block .ascii {
   color: white !important;
 }
@@ -138,10 +137,6 @@ pre {
   column-width: 100px;
 }
 
-/************************************************************/
-/* SVG Clock                                                */
-/************************************************************/
-
 .clock-container {
   display: none /*inline-block*/;
   position: relative;
@@ -169,17 +164,15 @@ pre {
 
 .model {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   z-index: 100;
+  box-sizing: border-box;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* Верхняя панель — как в macOS: глубокий чёрный, белый текст */
 .mac-menu-bar {
   flex-shrink: 0;
   height: 34px;
@@ -227,7 +220,6 @@ body.theme-light .mac-menu-bar {
   color: inherit;
 }
 
-/* Пункт меню слева (Theme) — как File, Edit, View */
 .mac-menu-bar-theme {
   display: inline-flex;
   align-items: center;
@@ -262,7 +254,6 @@ body.theme-light .mac-menu-bar-theme:hover {
   letter-spacing: 0.01em;
 }
 
-/* Wrapper to center the terminal window below menu bar */
 .model-content {
   flex: 1;
   min-height: 0;
@@ -270,10 +261,13 @@ body.theme-light .mac-menu-bar-theme:hover {
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 12px;
+  box-sizing: border-box;
 }
 
 .model-content > .mac-window {
-  margin: 12px;
+  margin: 0;
+  max-height: 100%;
 }
 
 a.no-color {
@@ -289,8 +283,8 @@ a,
 }
 
 .mac-window {
-  width: min(1200px, 90vw);
-  height: min(800px, 90vh);
+  width: min(1200px, 100%);
+  height: min(800px, 100%);
   display: flex;
   flex-direction: column;
   border-radius: 13px;
@@ -298,6 +292,7 @@ a,
   background: #1c1c1e;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   border: 1px solid rgb(94 95 95);
+  box-sizing: border-box;
 }
 
 body.theme-light .mac-window {
@@ -306,7 +301,6 @@ body.theme-light .mac-window {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-/* Бровь окна — чуть светлее контента, как в Terminal */
 .mac-titlebar {
   display: flex;
   align-items: center;
@@ -323,7 +317,6 @@ body.theme-light .mac-titlebar {
   border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
-/* Traffic lights — приглушённые, как в неактивном окне */
 .traffic-lights {
   display: flex;
   align-items: center;
@@ -372,7 +365,6 @@ body.theme-light .mac-title {
   color: rgba(0, 0, 0, 0.75);
 }
 
-/* Matrix overlay */
 .matrix-overlay {
   position: fixed;
   inset: 0;

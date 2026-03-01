@@ -34,6 +34,7 @@ export function App() {
 
   const getTypingSpeedMs = useCallback(() => {
     const presets = config.speedPresets as { slow: number; normal: number; fast: number };
+
     return presets[typingSpeed] ?? config.defaultTextPrintTime;
   }, [typingSpeed]);
 
@@ -46,12 +47,14 @@ export function App() {
     }
 
     window.history.pushState(null, '', url.toString());
+
     document.documentElement.lang = lang ?? 'en';
   }, [lang]);
 
   useEffect(() => {
     document.body.classList.remove('theme-dark', 'theme-light');
     document.body.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
+
     localStorage.setItem(STORAGE_THEME, theme);
   }, [theme]);
 
@@ -64,7 +67,10 @@ export function App() {
   }, [soundOn]);
 
   const playTick = useCallback(() => {
-    if (!soundOn) return;
+    if (!soundOn) {
+      return;
+    }
+
     try {
       const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
       const osc = ctx.createOscillator();
@@ -77,7 +83,7 @@ export function App() {
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
       osc.start(ctx.currentTime);
       osc.stop(ctx.currentTime + 0.05);
-    } catch (_) {}
+    } catch {}
   }, [soundOn]);
 
   useEffect(() => {
@@ -89,8 +95,10 @@ export function App() {
     const formattedDate = date.toDateString() + ' ' + date.toLocaleTimeString().slice(0, 8);
 
     localStorage.setItem(LAST_VISIT_DATE, `${formattedDate} on ttys010`);
+
     const hash = window.location.hash.slice(2);
     const hashCmd = hash && terminalCommands.includes(hash) ? hash : 'aboutfetch';
+
     handleEnter(hashCmd);
   }, []);
 
@@ -99,13 +107,16 @@ export function App() {
       const hash = window.location.hash.slice(2);
       if (hash && terminalCommands.includes(hash)) handleEnter(hash);
     };
+
     window.addEventListener('hashchange', onHashChange);
+
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   useEffect(() => {
     const tick = () => setMenuBarTime(new Date());
     const id = setInterval(tick, 1000);
+
     return () => clearInterval(id);
   }, []);
 
@@ -142,6 +153,7 @@ export function App() {
 
   function appendLine(html: string) {
     setLines(prev => [...prev, html]);
+
     requestAnimationFrame(() => {
       const el = document.querySelector('#terminal-output p:last-child') as HTMLElement | null;
       el?.scrollIntoView();
@@ -199,6 +211,7 @@ export function App() {
       window.clearTimeout(typingTimerRef.current);
       typingTimerRef.current = null;
     }
+
     inputRef.current.disabled = true;
     setInput('');
     inputRef.current.focus();
@@ -401,14 +414,19 @@ export function App() {
     const file = args[0];
     if (!file) {
       appendLine('usage: cat <filename>');
+
       return;
     }
+
     const files = [...(config.lsFiles as readonly { name: string; cmd: string }[])];
     const match = files.find(f => f.name === file);
+
     if (file === 'resume.txt') {
       appendLine((config.resumeTxt as string).replace(/\n/g, '<br>'));
+
       return;
     }
+
     if (file === 'contact.txt') {
       const links = config.links as Record<string, { txt: string }>;
       appendLine(
@@ -416,6 +434,7 @@ export function App() {
           .map(([k, v]) => `${k}: ${v.txt}`)
           .join('<br>')
       );
+
       return;
     }
     if (match) {
@@ -427,6 +446,7 @@ export function App() {
 
   function execFortune() {
     const fortunes = [...(config.fortune as readonly string[])];
+
     appendLine(fortunes[Math.floor(Math.random() * fortunes.length)] ?? 'Fortune not found.');
   }
 
@@ -435,6 +455,7 @@ export function App() {
     const uptime = `${Math.floor(performance.now() / 3600000)}h ${Math.floor((performance.now() % 3600000) / 60000)}m`;
     const resolution = `${window.screen?.width ?? 0}x${window.screen?.height ?? 0}`;
     const kernel = navigator.userAgent;
+
     appendLine(
       `<pre style="margin:0;color:#7ee">${n.user}@${n.host}<br>` +
         `----------------<br>` +
@@ -451,17 +472,22 @@ export function App() {
     const msg = args.length ? args.join(' ') : 'Hello from the terminal!';
     const bubble = cowsayBubble(msg);
     const cow = (config as any).cowsayTemplate || '';
+
     appendLine(`<pre style="margin:0;white-space:pre-wrap">${bubble}${cow}</pre>`);
   }
 
   async function execPing(args: string[]) {
     const host = args[0] || 'alex.soltanov.dev';
+
     appendLine(`PING ${host}: 56 data bytes`);
+
     for (let i = 0; i < 4; i++) {
       await sleep(400);
       const ms = 10 + Math.floor(Math.random() * 30);
+
       appendLine(`64 bytes from ${host}: icmp_seq=${i} ttl=64 time=${ms} ms`);
     }
+
     appendLine(`--- ${host} ping statistics ---<br>4 packets transmitted, 4 received, 0% packet loss`);
   }
 
@@ -471,11 +497,13 @@ export function App() {
       try {
         const res = await fetch(`https://api.github.com/users/so1tan0v`);
         const data = await res.json();
+
         appendLine('<pre style="margin:0;overflow:auto;max-height:200px">' + JSON.stringify(data, null, 2) + '</pre>');
       } catch {
         appendLine('curl: (6) Could not resolve host');
       }
     } else {
+
       appendLine(`curl: (6) Could not resolve host: ${url}`);
     }
   }
@@ -553,26 +581,36 @@ export function App() {
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const cmd = target.closest('[data-cmd]')?.getAttribute('data-cmd');
+
       if (cmd) {
         e.preventDefault();
         typeAndExecute(cmd);
       }
     };
     document.addEventListener('click', onClick);
+
     return () => document.removeEventListener('click', onClick);
   }, []);
 
   useEffect(() => {
-    if (!matrixActive || !matrixCanvasRef.current) return;
+    if (!matrixActive || !matrixCanvasRef.current) {
+      return;
+    }
+
     const canvas = matrixCanvasRef.current;
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEF';
+    if (!ctx) {
+      return;
+    }
+    
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
+    
+    const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEF';
     const fontSize = 14;
     const columns = Math.floor(w / fontSize);
     const drops: number[] = Array(columns).fill(1);
+    
     let anim: number;
 
     function draw() {
@@ -580,26 +618,34 @@ export function App() {
       ctx!.fillRect(0, 0, w, h);
       ctx!.fillStyle = '#0f0';
       ctx!.font = `${fontSize}px monospace`;
+
       for (let i = 0; i < drops.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];
         ctx!.fillText(char, i * fontSize, drops[i] * fontSize);
         if (drops[i] * fontSize > h && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
       }
+
       anim = requestAnimationFrame(draw);
     }
+
     draw();
+
     const onResize = () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     };
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMatrixActive(false);
     };
+
     window.addEventListener('resize', onResize);
     window.addEventListener('keydown', onKey);
+
     return () => {
       cancelAnimationFrame(anim);
+
       window.removeEventListener('resize', onResize);
       window.removeEventListener('keydown', onKey);
     };
@@ -620,7 +666,7 @@ export function App() {
       <header className="mac-menu-bar" role="banner">
         <div className="mac-menu-bar-left">
           <span className="mac-menu-bar-app">
-            <b>Terminal</b>
+            <b>Terminal11</b>
           </span>
           <button
             type="button"
