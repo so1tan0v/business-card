@@ -12,9 +12,30 @@ body {
   font-size: 9pt !important;
   font-family: Menlo, monospace !important;
   color: white !important;
-  background: -webkit-linear-gradient(90deg, #113e4b, #282d33);
-  /*background: linear-gradient(90deg, #113e4b,#282d33);*/
   background: linear-gradient(60deg, #1f2324, #3d4551);
+}
+
+body.theme-light {
+  color: #1e1e1e !important;
+  background: linear-gradient(60deg, #e8e8e8, #f5f5f5) !important;
+}
+
+body.theme-light .mac-window {
+  background: #fafafa;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+body.theme-light .prompt,
+body.theme-light .cmdline {
+  color: #1e1e1e !important;
+}
+
+body.theme-light .mac-titlebar {
+  background: #e0e0e0;
+}
+
+body.theme-light .mac-title {
+  color: #333;
 }
 
 output {
@@ -215,6 +236,72 @@ a,
   color: #e0e0e0;
   font-weight: 600;
   pointer-events: none;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0.85;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.theme-light .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* Matrix overlay */
+.matrix-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.matrix-overlay canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.matrix-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #0f0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+@media print {
+  .theme-toggle,
+  .input-line,
+  .traffic-lights,
+  .matrix-overlay {
+    display: none !important;
+  }
+  .mac-window {
+    box-shadow: none;
+    max-width: 100%;
+    max-height: none;
+  }
 }
 
 .mac-content {

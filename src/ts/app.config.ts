@@ -14,7 +14,51 @@ export const config = {
     112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 27, 8, 9, 20,
     16, 17, 91, 93, 18, 32, 13, 93, 44, 45, 19, 45, 36, 33, 46, 35, 34, 44, 37, 38, 40, 39
   ],
-  terminalCommands: ['help', 'clear', 'date', 'echo', 'uname', 'aboutfetch', 'experience', 'git', 'easteregg'],
+  terminalCommands: [
+    'help', 'clear', 'date', 'echo', 'uname', 'whoami', 'hostname', 'aboutfetch', 'me', 'experience', 'git',
+    'changelang', 'theme', 'speed', 'sound', 'ls', 'cat', 'fortune', 'neofetch', 'cowsay', 'ping', 'curl',
+    'ssh', 'matrix', 'resume', 'cv', 'contact', 'easteregg'
+  ],
+  defaultTheme: 'dark',
+  speedPresets: { slow: 120, normal: 60, fast: 20 },
+  hostname: 'alex.soltanov.dev',
+  whoami: 'so1tan0v',
+  lsFiles: [
+    { name: 'experience.txt', cmd: 'experience', description: 'work history' },
+    { name: 'skills.txt', cmd: 'aboutfetch', description: 'tech stack & info' },
+    { name: 'contact.txt', cmd: 'contact', description: 'links and contacts' },
+    { name: 'resume.txt', cmd: 'cat resume.txt', description: 'short resume' }
+  ],
+  resumeTxt: `Alexander Soltanov — Senior Node.js Engineer | Microservices
+Experience: 5+ years. Node.js, TypeScript, NestJS, PostgreSQL, Redis, RabbitMQ, Docker, CI/CD.
+Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
+  fortune: [
+    'The best way to predict the future is to implement it. — Backend wisdom',
+    'There are only 10 types of people: those who understand binary and those who don\'t.',
+    'Node.js: I/O is not the bottleneck. Your code is.',
+    'Cache invalidation is one of the two hard things in CS. — Phil Karlton',
+    'First solve the problem. Then write the code. — John Johnson',
+    'Microservices: when you want to turn a monolith into a distributed monolith.',
+    'St. Petersburg → Remote. Coffee → Code. Repeat.',
+  ],
+  neofetch: {
+    user: 'so1tan0v',
+    host: 'alex.soltanov.dev',
+    os: 'Browser OS',
+    theme: 'Terminal Dark',
+  },
+  cowsayTemplate: `
+  \\   ^__^
+   \\  (oo)\\_______
+      (__)\\       )\\/\\
+          ||----w |
+          ||     ||
+`,
+  easterEggs: [
+    '🐧 sudo make me a sandwich → Make it yourself. (xkcd 149)',
+    '🎹 The matrix has you. Run: matrix',
+    '🥚 There is no spoon. But there is npm install.',
+  ],
   informationAboutMe: {
     name: {
       txt: `<span style="color: #3daac4">Alexander</span>@<span style="color: #3daac4">Soltanov</span>`,

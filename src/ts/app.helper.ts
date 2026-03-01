@@ -106,3 +106,14 @@ export async function asyncTyped(DOMselector: string, message: string | string[]
 export async function sleep(time: number) {
   return new Promise(resolve => setTimeout(() => resolve(true), time));
 }
+
+export function cowsayBubble(message: string): string {
+  const lines = message.split('\n');
+  const maxLen = Math.max(...lines.map(l => l.length), 1);
+  const top = ' ' + '_'.repeat(maxLen + 2);
+  const bottom = ' ' + '-'.repeat(maxLen + 2);
+  const body = lines
+    .map(l => '| ' + l + ' '.repeat(Math.max(0, maxLen - l.length)) + ' |')
+    .join('\n');
+  return `${top}\n${body}\n${bottom}`;
+}

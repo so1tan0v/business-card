@@ -1,23 +1,40 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { asciiImage } from '../static/ascii.image';
 import { config } from '../ts/app.config';
-import { getAllInformationAboutMe, sleep } from '../ts/app.helper';
+import {
+  getAllInformationAboutMe,
+  sleep,
+  cowsayBubble,
+} from '../ts/app.helper';
 
 const LAST_VISIT_DATE = 'LAST_VISIT_DATE';
+const STORAGE_THEME = 'terminal_theme';
+const STORAGE_SPEED = 'terminal_speed';
+const STORAGE_SOUND = 'terminal_sound';
 
 export function App() {
   const [lang, setLang] = useState<string | null>(() => new URL(window.location.href).searchParams.get('lang'));
   const [input, setInput] = useState<string>('');
   const [lines, setLines] = useState<string[]>([]);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem(STORAGE_THEME) as 'dark' | 'light') || (config.defaultTheme as 'dark' | 'light'));
+  const [typingSpeed, setTypingSpeed] = useState<'slow' | 'normal' | 'fast'>(() => (localStorage.getItem(STORAGE_SPEED) as 'slow' | 'normal' | 'fast') || 'normal');
+  const [soundOn, setSoundOn] = useState(() => localStorage.getItem(STORAGE_SOUND) !== 'false');
+  const [matrixActive, setMatrixActive] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const typingTimerRef = useRef<number | null>(null);
   const historyRef = useRef<string[]>([]);
   const histPosRef = useRef<number>(0);
+  const matrixCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const username = config.username;
   const nonAlphabeticKeys: number[] = [...config.nonAlphabeticKeys] as number[];
   const terminalCommands: string[] = [...config.terminalCommands] as string[];
+
+  const getTypingSpeedMs = useCallback(() => {
+    const presets = config.speedPresets as { slow: number; normal: number; fast: number };
+    return presets[typingSpeed] ?? config.defaultTextPrintTime;
+  }, [typingSpeed]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -32,6 +49,37 @@ export function App() {
   }, [lang]);
 
   useEffect(() => {
+    document.body.classList.remove('theme-dark', 'theme-light');
+    document.body.classList.add(theme === 'dark' ? 'theme-dark' : 'theme-light');
+    localStorage.setItem(STORAGE_THEME, theme);
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_SPEED, typingSpeed);
+  }, [typingSpeed]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_SOUND, String(soundOn));
+  }, [soundOn]);
+
+  const playTick = useCallback(() => {
+    if (!soundOn) return;
+    try {
+      const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = 800;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.05, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.05);
+    } catch (_) {}
+  }, [soundOn]);
+
+  useEffect(() => {
     const last = localStorage.getItem(LAST_VISIT_DATE) ?? 'Never';
 
     appendLine(firstMessage(last));
@@ -40,7 +88,18 @@ export function App() {
     const formattedDate = date.toDateString() + ' ' + date.toLocaleTimeString().slice(0, 8);
 
     localStorage.setItem(LAST_VISIT_DATE, `${formattedDate} on ttys010`);
-    handleEnter('aboutfetch');
+    const hash = window.location.hash.slice(2);
+    const hashCmd = hash && terminalCommands.includes(hash) ? hash : 'aboutfetch';
+    handleEnter(hashCmd);
+  }, []);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash.slice(2);
+      if (hash && terminalCommands.includes(hash)) handleEnter(hash);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   useEffect(() => {
@@ -149,7 +208,7 @@ export function App() {
         return;
       }
       setInput(prev => prev + chars[i]);
-      typingTimerRef.current = window.setTimeout(() => step(i + 1), config.defaultTextPrintTime);
+      typingTimerRef.current = window.setTimeout(() => step(i + 1), getTypingSpeedMs());
     };
     step(0);
   }
@@ -203,6 +262,63 @@ export function App() {
       case 'uname':
         appendLine(navigator.appVersion ?? '');
         break;
+      case 'whoami':
+        appendLine(config.whoami as string);
+        break;
+      case 'hostname':
+        appendLine(config.hostname as string);
+        break;
+      case 'theme':
+        await execTheme(args);
+        break;
+      case 'speed':
+        await execSpeed(args);
+        break;
+      case 'sound':
+        await execSound(args);
+        break;
+      case 'ls':
+        await execLs(args);
+        break;
+      case 'cat':
+        await execCat(args);
+        break;
+      case 'fortune':
+        execFortune();
+        break;
+      case 'neofetch':
+        execNeofetch();
+        break;
+      case 'cowsay':
+        execCowsay(args);
+        break;
+      case 'ping':
+        await execPing(args);
+        break;
+      case 'curl':
+        await execCurl(args);
+        break;
+      case 'ssh':
+        execSsh(args);
+        break;
+      case 'matrix':
+        setMatrixActive(true);
+        break;
+      case 'resume':
+      case 'cv':
+        window.open('/cv.pdf', '_blank');
+        appendLine('Opening print dialog. Use "Save as PDF" to export resume.');
+        break;
+      case 'easteregg':
+        execEasteregg();
+        break;
+      case 'contact':
+        appendLine(
+          Object.entries(config.links as Record<string, { txt: string }>)
+            .map(([k, v]) => `<span style="color:#3daac4">${k}</span>: ${v.txt}`)
+            .join('<br>')
+        );
+        break;
       case 'aboutfetch':
       case 'me':
         appendLine(getAllInformationAboutMe(config.informationAboutMe as any, config.links as any, asciiImage));
@@ -228,8 +344,138 @@ export function App() {
         await execChangeLang(args);
         break;
       default:
-        if (cmd) appendLine(`${cmd}: command not found`);
+        if (cmd) {
+          const fullCmd = (cmd + ' ' + args.join(' ')).trim().toLowerCase();
+          if (fullCmd.includes('sudo') && fullCmd.includes('make') && fullCmd.includes('sandwich')) {
+            appendLine('Make it yourself. (xkcd 149)');
+          } else {
+            appendLine(`${cmd}: command not found`);
+          }
+        }
     }
+  }
+
+  function execTheme(args: string[]) {
+    const t = args[0]?.toLowerCase();
+    if (t === 'dark' || t === 'light') {
+      setTheme(t);
+      appendLine(`Theme set to ${t}.`);
+    } else {
+      appendLine(`usage: theme [dark|light]<br>Current: ${theme}`);
+    }
+  }
+
+  function execSpeed(args: string[]) {
+    const s = args[0]?.toLowerCase();
+    if (s === 'slow' || s === 'normal' || s === 'fast') {
+      setTypingSpeed(s);
+      appendLine(`Typing speed set to ${s}.`);
+    } else {
+      appendLine(`usage: speed [slow|normal|fast]<br>Current: ${typingSpeed}`);
+    }
+  }
+
+  function execSound(args: string[]) {
+    const v = args[0]?.toLowerCase();
+    if (v === 'on' || v === 'off') {
+      setSoundOn(v === 'on');
+      appendLine(`Sound ${v}.`);
+    } else {
+      appendLine(`usage: sound [on|off]<br>Current: ${soundOn ? 'on' : 'off'}`);
+    }
+  }
+
+  function execLs(_args: string[]) {
+    const files = [...(config.lsFiles as readonly { name: string; cmd: string; description: string }[])];
+    appendLine(files.map(f => `${f.name}  — ${f.description}`).join('<br>'));
+  }
+
+  function execCat(args: string[]) {
+    const file = args[0];
+    if (!file) {
+      appendLine('usage: cat <filename>');
+      return;
+    }
+    const files = [...(config.lsFiles as readonly { name: string; cmd: string }[])];
+    const match = files.find(f => f.name === file);
+    if (file === 'resume.txt') {
+      appendLine((config.resumeTxt as string).replace(/\n/g, '<br>'));
+      return;
+    }
+    if (file === 'contact.txt') {
+      const links = config.links as Record<string, { txt: string }>;
+      appendLine(Object.entries(links).map(([k, v]) => `${k}: ${v.txt}`).join('<br>'));
+      return;
+    }
+    if (match) {
+      appendLine(`Run command: <span class="link" data-cmd="${match.cmd}">${match.cmd}</span> for content.`);
+    } else {
+      appendLine(`cat: ${file}: No such file`);
+    }
+  }
+
+  function execFortune() {
+    const fortunes = [...(config.fortune as readonly string[])];
+    appendLine(fortunes[Math.floor(Math.random() * fortunes.length)] ?? 'Fortune not found.');
+  }
+
+  function execNeofetch() {
+    const n = config.neofetch as { user: string; host: string; os: string; theme: string };
+    const uptime = `${Math.floor(performance.now() / 3600000)}h ${Math.floor((performance.now() % 3600000) / 60000)}m`;
+    const resolution = `${window.screen?.width ?? 0}x${window.screen?.height ?? 0}`;
+    const kernel = navigator.userAgent;
+    appendLine(
+      `<pre style="margin:0;color:#7ee">${n.user}@${n.host}<br>` +
+        `----------------<br>` +
+        `OS: ${n.os}<br>` +
+        `Kernel: ${kernel}<br>` +
+        `Uptime: ${uptime}<br>` +
+        `Resolution: ${resolution}<br>` +
+        `Theme: ${n.theme}<br>` +
+        `</pre>`
+    );
+  }
+
+  function execCowsay(args: string[]) {
+    const msg = args.length ? args.join(' ') : 'Hello from the terminal!';
+    const bubble = cowsayBubble(msg);
+    const cow = (config as any).cowsayTemplate || '';
+    appendLine(`<pre style="margin:0;white-space:pre-wrap">${bubble}${cow}</pre>`);
+  }
+
+  async function execPing(args: string[]) {
+    const host = args[0] || 'alex.soltanov.dev';
+    appendLine(`PING ${host}: 56 data bytes`);
+    for (let i = 0; i < 4; i++) {
+      await sleep(400);
+      const ms = 10 + Math.floor(Math.random() * 30);
+      appendLine(`64 bytes from ${host}: icmp_seq=${i} ttl=64 time=${ms} ms`);
+    }
+    appendLine(`--- ${host} ping statistics ---<br>4 packets transmitted, 4 received, 0% packet loss`);
+  }
+
+  async function execCurl(args: string[]) {
+    const url = args[0] || config.gitHub.link + '';
+    if (url.includes('github.com')) {
+      try {
+        const res = await fetch(`https://api.github.com/users/so1tan0v`);
+        const data = await res.json();
+        appendLine('<pre style="margin:0;overflow:auto;max-height:200px">' + JSON.stringify(data, null, 2) + '</pre>');
+      } catch {
+        appendLine('curl: (6) Could not resolve host');
+      }
+    } else {
+      appendLine(`curl: (6) Could not resolve host: ${url}`);
+    }
+  }
+
+  function execSsh(args: string[]) {
+    appendLine('Connection refused. Try Telegram or email — see <span class="link" data-cmd="me">me</span> for contacts.');
+  }
+
+  function execEasteregg() {
+    const eggs = [...(config.easterEggs as readonly string[])];
+    appendLine(eggs[Math.floor(Math.random() * eggs.length)] ?? 'Nothing here.');
   }
 
   async function execGit(args: string[]) {
@@ -303,8 +549,57 @@ export function App() {
     return () => document.removeEventListener('click', onClick);
   }, []);
 
+  useEffect(() => {
+    if (!matrixActive || !matrixCanvasRef.current) return;
+    const canvas = matrixCanvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEF';
+    let w = (canvas.width = window.innerWidth);
+    let h = (canvas.height = window.innerHeight);
+    const fontSize = 14;
+    const columns = Math.floor(w / fontSize);
+    const drops: number[] = Array(columns).fill(1);
+    let anim: number;
+
+    function draw() {
+      ctx!.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx!.fillRect(0, 0, w, h);
+      ctx!.fillStyle = '#0f0';
+      ctx!.font = `${fontSize}px monospace`;
+      for (let i = 0; i < drops.length; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx!.fillText(char, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > h && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+      anim = requestAnimationFrame(draw);
+    }
+    draw();
+    const onResize = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMatrixActive(false);
+    };
+    window.addEventListener('resize', onResize);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      cancelAnimationFrame(anim);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [matrixActive]);
+
   return (
     <div className="model">
+      {matrixActive && (
+        <div className="matrix-overlay" aria-hidden="true">
+          <canvas ref={matrixCanvasRef} />
+          <p className="matrix-hint">Press Escape to exit</p>
+        </div>
+      )}
       <div className="mac-window">
         <div className="mac-titlebar">
           <div className="traffic-lights">
@@ -313,6 +608,15 @@ export function App() {
             <span className="light green" />
           </div>
           <div className="mac-title">{username}:~</div>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+            aria-label={`Current theme: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}`}
+          >
+            {theme === 'dark' ? '☀' : '🌙'}
+          </button>
         </div>
         <div className="mac-content">
           <div id="terminal-output">
@@ -328,8 +632,12 @@ export function App() {
                 ref={inputRef}
                 className="cmdline"
                 value={input}
+                aria-label="Terminal command input. Type a command and press Enter. Use Tab for completion, Arrow Up/Down for history."
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => {
+                  if (!['Enter', 'Tab', 'ArrowUp', 'ArrowDown', 'Meta', 'Control', 'Alt', 'Shift'].includes(e.key)) {
+                    playTick();
+                  }
                   if (e.key === 'Enter') {
                     e.preventDefault();
                     const trimmed = input.trim();
