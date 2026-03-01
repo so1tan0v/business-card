@@ -503,7 +503,6 @@ export function App() {
         appendLine('curl: (6) Could not resolve host');
       }
     } else {
-
       appendLine(`curl: (6) Could not resolve host: ${url}`);
     }
   }
@@ -602,15 +601,15 @@ export function App() {
     if (!ctx) {
       return;
     }
-    
+
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
-    
+
     const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEF';
     const fontSize = 14;
     const columns = Math.floor(w / fontSize);
     const drops: number[] = Array(columns).fill(1);
-    
+
     let anim: number;
 
     function draw() {
