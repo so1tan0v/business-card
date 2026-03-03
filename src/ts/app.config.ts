@@ -63,14 +63,14 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
       "There are only 10 types of people: those who understand binary and those who don't.",
       'Node.js: I/O is not the bottleneck. Your code is.',
       'First solve the problem. Then write the code. — John Johnson',
-      'Microservices: when you want to turn a monolith into a distributed monolith.',
+      'Microservices: when you want to turn a monolith into a distributed monolith.'
     ],
     ru: [
       'Лучший способ предсказать будущее — реализовать его. — David Heinemeier',
       'Есть 10 типов людей: те, кто понимает двоичную систему, и те, кто не понимает.',
       'Node.js: узкое место не I/O, а твой код.',
       'Сначала реши задачу. Потом пиши код. — John Johnson',
-      'Микросервисы: когда превращаешь монолит в распределённый монолит.',
+      'Микросервисы: когда превращаешь монолит в распределённый монолит.'
     ]
   },
   neofetch: {

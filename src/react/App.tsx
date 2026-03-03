@@ -346,12 +346,8 @@ export function App() {
       case 'aboutfetch':
       case 'me':
         appendLine(getAllInformationAboutMe(config.informationAboutMe as any, config.links as any, asciiImage));
-        appendLine(
-          t(lang, 'about.moreHelp')
-        );
-        appendLine(
-          t(lang, 'about.askExperience')
-        );
+        appendLine(t(lang, 'about.moreHelp'));
+        appendLine(t(lang, 'about.askExperience'));
         break;
       case 'experience':
         {
@@ -656,12 +652,12 @@ export function App() {
     };
   }, [matrixActive]);
 
-  const menuBarDateStr = menuBarTime.toLocaleDateString(undefined, {
+  const menuBarDateStr = menuBarTime.toLocaleDateString(lang, {
     weekday: 'short',
     month: 'short',
     day: 'numeric'
   });
-  const menuBarTimeStr = menuBarTime.toLocaleTimeString(undefined, {
+  const menuBarTimeStr = menuBarTime.toLocaleTimeString(lang, {
     hour: '2-digit',
     minute: '2-digit'
   });
@@ -680,7 +676,7 @@ export function App() {
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
             aria-label={`Theme: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}`}
           >
-            <span className="mac-menu-bar-theme-label">{theme === 'dark' ? 'Light' : 'Dark'}</span>
+            <span className="mac-menu-bar-theme-label">{t(lang, `theme-${theme}`)}</span>
           </button>
         </div>
         <div className="mac-menu-bar-right">
@@ -689,10 +685,18 @@ export function App() {
             className="mac-menu-bar-theme"
             onClick={() => setLang(prev => (prev === 'en' ? 'ru' : 'en'))}
           >
-            <span className="mac-menu-bar-theme-label"><b>{lang.toUpperCase()}</b></span>
+            <span className="mac-menu-bar-theme-label">
+              <b>{lang.toUpperCase()}</b>
+            </span>
           </button>
           <span className="mac-menu-bar-date">
-            <b>{menuBarDateStr}</b>
+            <b>
+              {menuBarDateStr
+                .replace(',', '')
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ')}
+            </b>
           </span>
           <span className="mac-menu-bar-time">
             <b>{menuBarTimeStr}</b>
