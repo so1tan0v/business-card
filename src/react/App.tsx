@@ -622,8 +622,13 @@ export function App() {
 
       for (let i = 0; i < drops.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];
+
         ctx!.fillText(char, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > h && Math.random() > 0.975) drops[i] = 0;
+
+        if (drops[i] * fontSize > h && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
         drops[i]++;
       }
 

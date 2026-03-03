@@ -4,7 +4,7 @@
   "description": "Business card about a person (Vite + React + TypeScript)",
   "main": "index.html",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5173 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --strictPort --port 5173 --host=0.0.0.0",
     "format": "prettier . --write",

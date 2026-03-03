@@ -282,7 +282,7 @@ a,
 
 .mac-window {
   width: min(1200px, 90vw);
-  height: min(800px, 90vh);
+  height: min(800px, 75vh);
   display: flex;
   flex-direction: column;
   border-radius: 13px;
