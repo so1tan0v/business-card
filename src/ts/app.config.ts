@@ -57,15 +57,22 @@ export const config = {
   resumeTxt: `Alexander Soltanov — Senior Node.js Engineer | Microservices
 Experience: 5+ years. Node.js, TypeScript, NestJS, PostgreSQL, Redis, RabbitMQ, Docker, CI/CD.
 Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
-  fortune: [
-    'The best way to predict the future is to implement it. — Backend wisdom',
-    "There are only 10 types of people: those who understand binary and those who don't.",
-    'Node.js: I/O is not the bottleneck. Your code is.',
-    'Cache invalidation is one of the two hard things in CS. — Phil Karlton',
-    'First solve the problem. Then write the code. — John Johnson',
-    'Microservices: when you want to turn a monolith into a distributed monolith.',
-    'St. Petersburg → Remote. Coffee → Code. Repeat.'
-  ],
+  fortune: {
+    en: [
+      'The best way to predict the future is to implement it. — David Heinemeier',
+      "There are only 10 types of people: those who understand binary and those who don't.",
+      'Node.js: I/O is not the bottleneck. Your code is.',
+      'First solve the problem. Then write the code. — John Johnson',
+      'Microservices: when you want to turn a monolith into a distributed monolith.',
+    ],
+    ru: [
+      'Лучший способ предсказать будущее — реализовать его. — David Heinemeier',
+      'Есть 10 типов людей: те, кто понимает двоичную систему, и те, кто не понимает.',
+      'Node.js: узкое место не I/O, а твой код.',
+      'Сначала реши задачу. Потом пиши код. — John Johnson',
+      'Микросервисы: когда превращаешь монолит в распределённый монолит.',
+    ]
+  },
   neofetch: {
     user: 'so1tan0v',
     host: 'alex.soltanov.dev',
@@ -95,9 +102,9 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
     },
     'Work experience': {
       txt: `
-            ${workExperience.years} ${[0, 1].includes(workExperience.years) ? 'year' : 'years'} 
-            ${workExperience.months} ${[0, 1].includes(workExperience.months) ? 'month' : 'months'}
-        `,
+        ${workExperience.years} ${[0, 1].includes(workExperience.years) ? 'year' : 'years'} 
+        ${workExperience.months} ${[0, 1].includes(workExperience.months) ? 'month' : 'months'}
+      `,
       title_color: '#3daac4'
     },
     'Programming languages': {
@@ -198,8 +205,9 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
       title_color: '#3daac4'
     }
   },
-  experience: [
-    `
+  experience: {
+    en: [
+      `
         <br>
         <span style="color: #c4c03d">July 2024</span> — <span style="color: #c4c03d">Present</span> 
         (${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'year' : 'years'} 
@@ -224,7 +232,7 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         &nbsp;&nbsp;• Implemented unit and integration testing (${createAnchor('Jest', 'https://jestjs.io/')}) for business-critical modules<br>
         <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}</em><br>
     `,
-    `
+      `
         <br>
         <span style="color: #c4c03d">January 2023</span> — <span style="color: #c4c03d">July 2024</span> (1 year 7 months)<br>
         <strong>VISTA LLC</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Team Lead / Backend Developer<br>
@@ -243,7 +251,7 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         &nbsp;&nbsp;• Implemented code review standards and Git Flow<br>
         <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
     `,
-    `
+      `
         <br>
         <span style="color: #c4c03d">December 2020</span> — <span style="color: #c4c03d">January 2023</span> (2 years 2 months)<br>
         <strong>VISTA LLC</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Backend Developer<br>
@@ -259,7 +267,70 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         &nbsp;&nbsp;• Implemented automated testing and CI<br>
         <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}</em><br>
     `
-  ]
+    ],
+    ru: [
+      `
+        <br>
+        <span style="color: #c4c03d">Июль 2024</span> — <span style="color: #c4c03d">настоящее время</span> 
+        (${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'год' : 'лет'} 
+        ${workExperienceInCurrentPost.months} ${[1].includes(workExperienceInCurrentPost.months) ? 'месяц' : 'месяцев'})<br>
+        <strong>K2T</strong> (${createAnchor('k2t.app', 'https://k2t.app')}) — Senior Node.js Developer<br>
+        <span style="color: #3daac4">Обязанности:</span><br>
+        &nbsp;&nbsp;• Проектирование и разработка микросервисов на ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')})<br>
+        &nbsp;&nbsp;• Разработка real-time сервисов (${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('WebSocket', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API')})<br>
+        &nbsp;&nbsp;• Построение message-driven архитектуры (${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')})<br>
+        &nbsp;&nbsp;• Оптимизация ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')} и ${createAnchor('Redis', 'https://redis.io/')}<br>
+        &nbsp;&nbsp;• Реализация graceful shutdown и health checks<br>
+        &nbsp;&nbsp;• Настройка CI/CD пайплайнов<br>
+        &nbsp;&nbsp;• Внедрение мониторинга (${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')})<br>
+        &nbsp;&nbsp;• Code review и менторство<br>
+        &nbsp;&nbsp;• Участие в архитектурных review и выборе технологий<br>
+        &nbsp;&nbsp;• Реализация стратегии retry + idempotency и structured logging<br>
+        <span style="color: #3daac4">Достижения:</span><br>
+        &nbsp;&nbsp;• Снижение p95 latency API с ~420ms до ~150ms за счёт кэширования в ${createAnchor('Redis', 'https://redis.io/')} и устранения N+1 запросов<br>
+        &nbsp;&nbsp;• Оптимизация пула соединений ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')} — стабильная работа при нагрузке до 5000 RPS<br>
+        &nbsp;&nbsp;• Реализация сервиса балансировки задач (Round Robin + health checks)<br>
+        &nbsp;&nbsp;• Настройка мониторинга и алертинга — снижение времени реакции на инциденты<br>
+        &nbsp;&nbsp;• Внедрение unit и integration тестов (${createAnchor('Jest', 'https://jestjs.io/')}) для критичных модулей<br>
+        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}</em><br>
+    `,
+      `
+        <br>
+        <span style="color: #c4c03d">Январь 2023</span> — <span style="color: #c4c03d">Июль 2024</span> (1 год 7 месяцев)<br>
+        <strong>VISTA LLC</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Tim Lead / Backend Developer<br>
+        <span style="color: #3daac4">Обязанности:</span><br>
+        &nbsp;&nbsp;• Руководство backend-командой (8 разработчиков)<br>
+        &nbsp;&nbsp;• Архитектурное проектирование сервисов<br>
+        &nbsp;&nbsp;• Переход к микросервисной архитектуре<br>
+        &nbsp;&nbsp;• Оптимизация производительности backend-систем<br>
+        &nbsp;&nbsp;• Настройка CI/CD<br>
+        &nbsp;&nbsp;• Работа с заказчиками<br>
+        <span style="color: #3daac4">Достижения:</span><br>
+        &nbsp;&nbsp;• Перевёл ключевые сервисы на микросервисную архитектуру (${createAnchor('Docker', 'https://www.docker.com/')}-based deployment)<br>
+        &nbsp;&nbsp;• Оптимизировал SQL-запросы и кэширование в ${createAnchor('Redis', 'https://redis.io/')} — время ответа API с 4.2с до 1.5с<br>
+        &nbsp;&nbsp;• Внедрил ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')} — время деплоя 2–3 минуты<br>
+        &nbsp;&nbsp;• Настроил мониторинг с uptime 99.9% для проекта с 20 000+ пользователей в день<br>
+        &nbsp;&nbsp;• Ввел стандарты code review и Git Flow<br>
+        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
+    `,
+      `
+        <br>
+        <span style="color: #c4c03d">Декабрь 2020</span> — <span style="color: #c4c03d">Январь 2023</span> (2 года 2 месяца)<br>
+        <strong>VISTA LLC</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Backend Developer<br>
+        <span style="color: #3daac4">Обязанности:</span><br>
+        &nbsp;&nbsp;• Поддержка и развитие backend-сервисов (${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('Node.js', 'https://nodejs.org/')})<br>
+        &nbsp;&nbsp;• Разработка REST API, SOAP<br>
+        &nbsp;&nbsp;• Оптимизация структуры БД<br>
+        &nbsp;&nbsp;• Контейнеризация в ${createAnchor('Docker', 'https://www.docker.com/')}<br>
+        &nbsp;&nbsp;• Автоматизация релизов<br>
+        <span style="color: #3daac4">Достижения:</span><br>
+        &nbsp;&nbsp;• Устранил критические уязвимости (SQL injection, XSS)<br>
+        &nbsp;&nbsp;• Оптимизировал запросы в ${createAnchor('MySQL', 'https://www.mysql.com/')} с помощью индексов<br>
+        &nbsp;&nbsp;• Внедрил автоматизированное тестирование и CI<br>
+        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}</em><br>
+    `
+    ]
+  }
 } as const;
 
 function createAnchor(titleName: string, url: string, classNames: string[] = [''], target = '_blank') {

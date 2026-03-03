@@ -2,14 +2,29 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { asciiImage } from '../static/ascii.image';
 import { config } from '../ts/app.config';
 import { cowsayBubble, getAllInformationAboutMe, sleep } from '../ts/app.helper';
+import { t, type Lang } from './i18n';
 
 const LAST_VISIT_DATE = 'LAST_VISIT_DATE';
 const STORAGE_THEME = 'terminal_theme';
 const STORAGE_SPEED = 'terminal_speed';
 const STORAGE_SOUND = 'terminal_sound';
+const STORAGE_LANG = 'terminal_lang';
 
 export function App() {
-  const [lang, setLang] = useState<string | null>(() => new URL(window.location.href).searchParams.get('lang'));
+  const [lang, setLang] = useState<Lang>(() => {
+    const urlLang = new URL(window.location.href).searchParams.get('lang');
+    if (urlLang === 'ru' || urlLang === 'en') {
+      return urlLang;
+    }
+
+    const stored = typeof window !== 'undefined' ? window.localStorage.getItem(STORAGE_LANG) : null;
+    if (stored === 'ru' || stored === 'en') {
+      return stored;
+    }
+
+    return 'en';
+  });
+
   const [input, setInput] = useState<string>('');
   const [lines, setLines] = useState<string[]>([]);
   const [theme, setTheme] = useState<'dark' | 'light'>(
@@ -40,15 +55,12 @@ export function App() {
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    if (lang) {
-      url.searchParams.set('lang', lang);
-    } else {
-      url.searchParams.delete('lang');
-    }
-
+    url.searchParams.set('lang', lang);
     window.history.pushState(null, '', url.toString());
 
-    document.documentElement.lang = lang ?? 'en';
+    document.documentElement.lang = lang;
+
+    window.localStorage.setItem(STORAGE_LANG, lang);
   }, [lang]);
 
   useEffect(() => {
@@ -174,13 +186,7 @@ export function App() {
   }
 
   function firstMessage(lastVisit: string) {
-    return `
-      Last login: ${lastVisit}<br>
-      Welcome to Alexander Soltanov's interactive personal business card<br>
-      Type <span class="link" data-cmd="help">help</span> for instructions on how to use my business card
-      <br>
-      <br>
-    `;
+    return t(lang, 'welcome', { lastVisit });
   }
 
   async function handleEnter(forceValue?: string) {
@@ -261,10 +267,8 @@ export function App() {
         appendLine(args.join(' '));
         break;
       case 'help':
-        appendLine(
-          'This is a page about Alexander Soltanov — Senior Node.js Engineer.<br>In this terminal you can find out about me and my projects.'
-        );
-        appendLine('Write a command or click on it!');
+        appendLine(t(lang, 'help.intro'));
+        appendLine(t(lang, 'help.prompt'));
         appendLine(`
           <div class="ls-files row">
             ${terminalCommands
@@ -343,19 +347,21 @@ export function App() {
       case 'me':
         appendLine(getAllInformationAboutMe(config.informationAboutMe as any, config.links as any, asciiImage));
         appendLine(
-          `<div>${new Date()}<br>Enter or click "<span class="link" data-cmd="help">help</span>" for more information.</div><br>`
+          t(lang, 'about.moreHelp')
         );
         appendLine(
-          `<div>Do you want to see my experience? Enter or click "<span class="link" data-cmd="experience">experience</span>" for more information</div>`
+          t(lang, 'about.askExperience')
         );
         break;
       case 'experience':
-        if (typeof config.experience === 'string') appendLine(config.experience as unknown as string);
-        else
-          for (const item of config.experience as unknown as string[]) {
+        {
+          const experiencesByLang = config.experience as Record<Lang, readonly string[]>;
+          const items = experiencesByLang[lang] ?? experiencesByLang.en;
+          for (const item of items) {
             appendLine(item);
             await sleep(1000);
           }
+        }
         break;
       case 'git':
         await execGit(args);
@@ -376,12 +382,12 @@ export function App() {
   }
 
   function execTheme(args: string[]) {
-    const t = args[0]?.toLowerCase();
-    if (t === 'dark' || t === 'light') {
-      setTheme(t);
-      appendLine(`Theme set to ${t}.`);
+    const value = args[0]?.toLowerCase();
+    if (value === 'dark' || value === 'light') {
+      setTheme(value);
+      appendLine(t(lang, 'theme.set', { value }));
     } else {
-      appendLine(`usage: theme [dark|light]<br>Current: ${theme}`);
+      appendLine(t(lang, 'theme.usage', { current: theme }));
     }
   }
 
@@ -389,9 +395,9 @@ export function App() {
     const s = args[0]?.toLowerCase();
     if (s === 'slow' || s === 'normal' || s === 'fast') {
       setTypingSpeed(s);
-      appendLine(`Typing speed set to ${s}.`);
+      appendLine(t(lang, 'speed.set', { value: s }));
     } else {
-      appendLine(`usage: speed [slow|normal|fast]<br>Current: ${typingSpeed}`);
+      appendLine(t(lang, 'speed.usage', { current: typingSpeed }));
     }
   }
 
@@ -399,9 +405,9 @@ export function App() {
     const v = args[0]?.toLowerCase();
     if (v === 'on' || v === 'off') {
       setSoundOn(v === 'on');
-      appendLine(`Sound ${v}.`);
+      appendLine(v === 'on' ? t(lang, 'sound.setOn') : t(lang, 'sound.setOff'));
     } else {
-      appendLine(`usage: sound [on|off]<br>Current: ${soundOn ? 'on' : 'off'}`);
+      appendLine(t(lang, 'sound.usage', { current: soundOn ? 'on' : 'off' }));
     }
   }
 
@@ -445,9 +451,13 @@ export function App() {
   }
 
   function execFortune() {
-    const fortunes = [...(config.fortune as readonly string[])];
-
-    appendLine(fortunes[Math.floor(Math.random() * fortunes.length)] ?? 'Fortune not found.');
+    const fortunesByLang = config.fortune as Record<Lang, readonly string[]>;
+    const fortunes = fortunesByLang[lang] ?? fortunesByLang.en;
+    if (!fortunes.length) {
+      return;
+    }
+    const index = Math.floor(Math.random() * fortunes.length);
+    appendLine(fortunes[index] ?? '');
   }
 
   function execNeofetch() {
@@ -524,16 +534,12 @@ export function App() {
       case '':
       case '-h':
       case '--help':
-        appendLine(`use: git [-h | --help]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command [args]`);
-        appendLine(
-          `information about my projects<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="link" data-cmd="git projects">projects</span>`
-        );
-        appendLine(
-          `link to my GitHub<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="link" data-cmd="git link">link</span>`
-        );
+        appendLine(t(lang, 'git.help.usage'));
+        appendLine(t(lang, 'git.help.projects'));
+        appendLine(t(lang, 'git.help.link'));
         break;
       case 'projects':
-        appendLine(`You can watch my <a href="${config.gitHub.link}" target="_blank">GitHub</a>!`);
+        appendLine(t(lang, 'git.projects.header', { link: config.gitHub.link }));
         appendLine(`
           <div>
             ${[...config.gitHub.projects]
@@ -541,13 +547,13 @@ export function App() {
               .join('<br>')}
           </div>
         `);
-        appendLine('I have few projects, soon there will be many projects!');
+        appendLine(t(lang, 'git.help.note'));
         break;
       case 'link':
         appendLine(`<a href="${config.gitHub.link}" target="_blank">so1tan0v</a>`);
         break;
       default:
-        appendLine(`git: «${sub}» is not a git command. See 'git --help'.`);
+        appendLine(t(lang, 'git.error.unknown', { sub }));
     }
   }
 
@@ -665,20 +671,26 @@ export function App() {
       <header className="mac-menu-bar" role="banner">
         <div className="mac-menu-bar-left">
           <span className="mac-menu-bar-app">
-            <b>Terminal11</b>
+            <b>Terminal</b>
           </span>
           <button
             type="button"
             className="mac-menu-bar-theme"
-            onClick={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))}
+            onClick={() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))}
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
             aria-label={`Theme: ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'}`}
           >
-            <span className="mac-menu-bar-theme-icon">{theme === 'dark' ? '☀' : '🌙'}</span>
             <span className="mac-menu-bar-theme-label">{theme === 'dark' ? 'Light' : 'Dark'}</span>
           </button>
         </div>
         <div className="mac-menu-bar-right">
+          <button
+            type="button"
+            className="mac-menu-bar-theme"
+            onClick={() => setLang(prev => (prev === 'en' ? 'ru' : 'en'))}
+          >
+            <span className="mac-menu-bar-theme-label"><b>{lang.toUpperCase()}</b></span>
+          </button>
           <span className="mac-menu-bar-date">
             <b>{menuBarDateStr}</b>
           </span>
