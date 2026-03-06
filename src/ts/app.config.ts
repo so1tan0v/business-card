@@ -183,15 +183,37 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   gitHub: {
     link: 'https://github.com/so1tan0v',
     projects: [
-      { name: 'business-card (jQuery)', link: 'https://github.com/so1tan0v/business-card' },
       {
-        name: 'business-card-navigation-page (jQuery)',
-        link: 'https://github.com/so1tan0v/business-card-navigation-page'
+        name: 'Business Card (React, TypeScript)',
+        link: 'https://github.com/so1tan0v/business-card'
       },
-      { name: 'log-checker-frontend (React, TypeScript)', link: 'https://github.com/so1tan0v/log-checker-frontend' },
       {
-        name: 'log-checker-backend (Node.js, TypeScript, Fastify)',
-        link: 'https://github.com/so1tan0v/log-checker-backend'
+        name: 'Stack Research (Node.js, Python, GoLang, C#)',
+        link: 'https://github.com/so1tan0v/stack-research'
+      },
+      {
+        name: '(Contributor) NestJS Custom Injector (TypeScript)',
+        link: 'https://github.com/so1tan0v/nestjs-custom-injector'
+      },
+      {
+        name: '(Contributor) TypeORM Model Generator (TypeScript)',
+        link: 'https://github.com/so1tan0v/typeorm-model-generator'
+      },
+      {
+        name: 'Disk Usage CLI (Go)',
+        link: 'https://github.com/so1tan0v/go-du-cli'
+      },
+      {
+        name: 'Gendiff CLI (Go)',
+        link: 'https://github.com/so1tan0v/go-gendiff-cli'
+      },
+      {
+        name: 'URL Shortener (Go, PostgreSQL, Gin, Caddy)',
+        link: 'https://github.com/so1tan0v/go-url-shortener'
+      },
+      {
+        name: 'Crawler CLI (Go)',
+        link: 'https://github.com/so1tan0v/go-crawler-cli'
       }
     ]
   },
