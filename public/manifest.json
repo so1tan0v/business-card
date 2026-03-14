@@ -1,7 +1,7 @@
 {
   "name": "Alexander Soltanov — Terminal Resume",
   "short_name": "Soltanov",
-  "description": "Senior Node.js Engineer. Interactive terminal business card.",
+  "description": "Backend Developer. Interactive terminal business card.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1f2324",
