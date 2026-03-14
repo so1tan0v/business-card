@@ -54,8 +54,8 @@ export const config = {
     { name: 'contact.txt', cmd: 'contact', description: 'links and contacts' },
     { name: 'resume.txt', cmd: 'cat resume.txt', description: 'short resume' }
   ],
-  resumeTxt: `Alexander Soltanov — Senior Node.js Engineer | Microservices
-Experience: 5+ years. Node.js, TypeScript, NestJS, PostgreSQL, Redis, RabbitMQ, Docker, CI/CD.
+  resumeTxt: `Alexander Soltanov — Golang Developer | Backend Engineer
+Experience: 5+ years. Go, Node.js, TypeScript, PostgreSQL, Redis, RabbitMQ, Docker, CI/CD, observability.
 Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   fortune: {
     en: [
@@ -97,7 +97,7 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
       show_title: false
     },
     Position: {
-      txt: `Senior Node.js Engineer | Microservices`,
+      txt: `Backend Developer`,
       title_color: '#3daac4'
     },
     'Work experience': {
@@ -121,6 +121,10 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         'Language versions': {
           title_color: '#c4c03d',
           leaves: {
+            [`${createAnchor('Go', 'https://go.dev/', ['no-color'])}`]: {
+              txt: '>=1.20',
+              title_color: '#c4733d'
+            },
             [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
               txt: `v14–24`,
               title_color: '#c4733d'
@@ -128,18 +132,22 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
             [`${createAnchor('PHP', 'https://www.php.net/', ['no-color'])}`]: {
               txt: '>=5.6',
               title_color: '#c4733d'
-            },
-            [`${createAnchor('Go', 'https://go.dev/', ['no-color'])}`]: {
-              txt: '>=1.20',
-              title_color: '#c4733d'
             }
           }
         },
         'Frameworks & APIs': {
           title_color: '#c4c03d',
           leaves: {
+            [`${createAnchor('Go', 'https://go.dev/', ['no-color'])}`]: {
+              txt: `${createAnchor('Gin', 'https://gin-gonic.com/')}, ${createAnchor('GORM', 'https://gorm.io/')}, ${createAnchor('urfave/cli', 'https://cli.urfave.org/')}`,
+              title_color: '#c4733d'
+            },
             [`${createAnchor('Node.js', 'https://nodejs.org/', ['no-color'])}`]: {
-              txt: `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Express', 'https://expressjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('WebSocket', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API')}, ${createAnchor('WebRTC', 'https://webrtc.org/')}`,
+              txt: `${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}`,
+              title_color: '#c4733d'
+            },
+            Protocols: {
+              txt: `${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('WebSocket', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API')}, REST, SOAP`,
               title_color: '#c4733d'
             },
             Architecture: {
@@ -234,25 +242,26 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         <span style="color: #c4c03d">July 2024</span> — <span style="color: #c4c03d">Present</span> 
         (${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'year' : 'years'} 
         ${workExperienceInCurrentPost.months} ${[0, 1].includes(workExperienceInCurrentPost.months) ? 'month' : 'months'})<br>
-        <strong>K2T</strong> (${createAnchor('k2t.app', 'https://k2t.app')}) — Senior Node.js Developer<br>
+        <strong>K2T</strong> (${createAnchor('k2t.app', 'https://k2t.app')}) — Senior Backend Developer<br>
         <span style="color: #3daac4">Responsibilities:</span><br>
-        &nbsp;&nbsp;• Designing and developing microservices on ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')})<br>
+        &nbsp;&nbsp;• Designing and developing microservices on ${createAnchor('Go', 'https://go.dev/')} and ${createAnchor('Node.js', 'https://nodejs.org/')}<br>
         &nbsp;&nbsp;• Developing real-time services (${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('WebSocket', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API')})<br>
         &nbsp;&nbsp;• Building message-driven architecture (${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')})<br>
         &nbsp;&nbsp;• Optimizing ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')} and ${createAnchor('Redis', 'https://redis.io/')}<br>
-        &nbsp;&nbsp;• Implementing graceful shutdown and health checks<br>
+        &nbsp;&nbsp;• Implementing graceful shutdown, health checks, retry strategies and idempotency<br>
         &nbsp;&nbsp;• Setting up CI/CD pipelines<br>
-        &nbsp;&nbsp;• Implementing monitoring (${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')})<br>
-        &nbsp;&nbsp;• Code review and technical mentoring<br>
-        &nbsp;&nbsp;• Participated in architectural design reviews; made technology selection decisions<br>
-        &nbsp;&nbsp;• Implemented retry + idempotency strategy and structured logging<br>
+        &nbsp;&nbsp;• Implementing monitoring, structured logging and alerting (${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')})<br>
+        &nbsp;&nbsp;• Code review, technical mentoring and architecture reviews<br>
+        &nbsp;&nbsp;• Making technology and engineering approach decisions<br>
         <span style="color: #3daac4">Achievements:</span><br>
-        &nbsp;&nbsp;• Reduced API p95 latency from ~420ms to ~150ms via ${createAnchor('Redis', 'https://redis.io/')} caching and N+1 query elimination<br>
         &nbsp;&nbsp;• Optimized ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')} connection pool — stable operation under load up to 5000 RPS<br>
         &nbsp;&nbsp;• Implemented task balancing service (Round Robin + health checks)<br>
         &nbsp;&nbsp;• Set up monitoring and alerting — reduced incident response time<br>
         &nbsp;&nbsp;• Implemented unit and integration testing (${createAnchor('Jest', 'https://jestjs.io/')}) for business-critical modules<br>
-        <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}</em><br>
+        &nbsp;&nbsp;• Led the design and implementation of an IAM platform for 40+ services with centralized authentication and authorization<br>
+        &nbsp;&nbsp;• Replaced fragmented login flows with a unified IAM layer based on OAuth2/OIDC and SSO, cutting user onboarding time by about 60%<br>
+        &nbsp;&nbsp;• Introduced CI/CD and automated testing for IAM services, reducing release risks and improving delivery predictability<br>
+        <em>Stack: ${createAnchor('Go', 'https://go.dev/')}, ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('Gin', 'https://gin-gonic.com/')}, ${createAnchor('GORM', 'https://gorm.io/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, Docker Compose, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}, ${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')}, ${createAnchor('Keycloak', 'https://www.keycloak.org/')}, OAuth2/OIDC</em><br>
     `,
       `
         <br>
@@ -263,15 +272,23 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         &nbsp;&nbsp;• Architectural design of services<br>
         &nbsp;&nbsp;• Transition to microservices architecture<br>
         &nbsp;&nbsp;• Performance optimization of backend systems<br>
-        &nbsp;&nbsp;• CI/CD setup<br>
+        &nbsp;&nbsp;• Setting up and evolving CI/CD<br>
         &nbsp;&nbsp;• Customer interaction<br>
+        &nbsp;&nbsp;• Introducing engineering standards and delivery processes<br>
         <span style="color: #3daac4">Achievements:</span><br>
-        &nbsp;&nbsp;• Migrated key services to microservices architecture (${createAnchor('Docker', 'https://www.docker.com/')}-based deployment)<br>
-        &nbsp;&nbsp;• Optimized SQL queries and ${createAnchor('Redis', 'https://redis.io/')} caching — API response time from 4.2s to 1.5s<br>
+        &nbsp;&nbsp;• Built the core engineering infrastructure for launching and scaling new projects with unified development and delivery practices<br>
+        &nbsp;&nbsp;• Introduced and configured GitLab, standardized repository workflows and team processes<br>
+        &nbsp;&nbsp;• Developed common standards for ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')} pipelines, making releases faster and more predictable<br>
+        &nbsp;&nbsp;• Standardized ${createAnchor('Docker', 'https://www.docker.com/')} environments for local development and deployment<br>
+        &nbsp;&nbsp;• Initiated the company-wide transition to microservices architecture<br>
+        &nbsp;&nbsp;• Refined internal delivery flow and task routing, improving transparency and development governance<br>
+        &nbsp;&nbsp;• Ran a global refactor across 20+ projects, improving maintainability and code quality<br>
+        &nbsp;&nbsp;• Organized upgrades to current technology and dependency versions, reducing technical debt<br>
+        &nbsp;&nbsp;• Optimized SQL queries and ${createAnchor('Redis', 'https://redis.io/')} caching — API response time from 5–6s to 0.5s<br>
         &nbsp;&nbsp;• Implemented ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')} — deploy time reduced to 2–3 minutes<br>
         &nbsp;&nbsp;• Set up system monitoring with 99.9% uptime for project with 20,000+ daily users<br>
         &nbsp;&nbsp;• Implemented code review standards and Git Flow<br>
-        <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
+        <em>Stack: ${createAnchor('Go', 'https://go.dev/')}, ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('Gin', 'https://gin-gonic.com/')}, ${createAnchor('GORM', 'https://gorm.io/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}, ${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}</em><br>
     `,
       `
         <br>
@@ -283,11 +300,15 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         &nbsp;&nbsp;• Database structure optimization<br>
         &nbsp;&nbsp;• ${createAnchor('Docker', 'https://www.docker.com/')} containerization<br>
         &nbsp;&nbsp;• Release automation<br>
+        &nbsp;&nbsp;• Improving backend security<br>
         <span style="color: #3daac4">Achievements:</span><br>
         &nbsp;&nbsp;• Eliminated critical vulnerabilities (SQL injection, XSS)<br>
-        &nbsp;&nbsp;• Optimized ${createAnchor('MySQL', 'https://www.mysql.com/')} queries through indexing<br>
-        &nbsp;&nbsp;• Implemented automated testing and CI<br>
-        <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}</em><br>
+        &nbsp;&nbsp;• Optimized ${createAnchor('MySQL', 'https://www.mysql.com/')} queries through indexing and query tuning<br>
+        &nbsp;&nbsp;• Developed and improved REST API and SOAP integrations for internal and external services<br>
+        &nbsp;&nbsp;• Containerized applications with ${createAnchor('Docker', 'https://www.docker.com/')}, simplifying local development and deployment<br>
+        &nbsp;&nbsp;• Implemented automated testing and CI, improving release quality<br>
+        &nbsp;&nbsp;• Increased release stability and predictability through delivery automation<br>
+        <em>Stack: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}, ${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
     `
     ],
     ru: [
@@ -296,60 +317,73 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
         <span style="color: #c4c03d">Июль 2024</span> — <span style="color: #c4c03d">настоящее время</span> 
         (${workExperienceInCurrentPost.years} ${[0, 1].includes(workExperienceInCurrentPost.years) ? 'год' : 'лет'} 
         ${workExperienceInCurrentPost.months} ${[1].includes(workExperienceInCurrentPost.months) ? 'месяц' : 'месяцев'})<br>
-        <strong>K2T</strong> (${createAnchor('k2t.app', 'https://k2t.app')}) — Senior Node.js Developer<br>
+        <strong>ООО "K2T"</strong> (${createAnchor('k2t.app', 'https://k2t.app')}) — Senior Backend Developer<br>
         <span style="color: #3daac4">Обязанности:</span><br>
-        &nbsp;&nbsp;• Проектирование и разработка микросервисов на ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')})<br>
+        &nbsp;&nbsp;• Проектирование и разработка микросервисов на ${createAnchor('Go', 'https://go.dev/')} и ${createAnchor('Node.js', 'https://nodejs.org/')}<br>
         &nbsp;&nbsp;• Разработка real-time сервисов (${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('WebSocket', 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API')})<br>
         &nbsp;&nbsp;• Построение message-driven архитектуры (${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')})<br>
         &nbsp;&nbsp;• Оптимизация ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')} и ${createAnchor('Redis', 'https://redis.io/')}<br>
-        &nbsp;&nbsp;• Реализация graceful shutdown и health checks<br>
+        &nbsp;&nbsp;• Реализация graceful shutdown, health checks, retry strategies и idempotency<br>
         &nbsp;&nbsp;• Настройка CI/CD пайплайнов<br>
-        &nbsp;&nbsp;• Внедрение мониторинга (${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')})<br>
-        &nbsp;&nbsp;• Code review и менторство<br>
-        &nbsp;&nbsp;• Участие в архитектурных review и выборе технологий<br>
-        &nbsp;&nbsp;• Реализация стратегии retry + idempotency и structured logging<br>
+        &nbsp;&nbsp;• Внедрение мониторинга, structured logging и алертинга (${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')})<br>
+        &nbsp;&nbsp;• Code review, техническое менторство и участие в архитектурных review<br>
+        &nbsp;&nbsp;• Принятие решений по выбору технологий и инженерных подходов<br>
         <span style="color: #3daac4">Достижения:</span><br>
-        &nbsp;&nbsp;• Снижение p95 latency API с ~420ms до ~150ms за счёт кэширования в ${createAnchor('Redis', 'https://redis.io/')} и устранения N+1 запросов<br>
         &nbsp;&nbsp;• Оптимизация пула соединений ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')} — стабильная работа при нагрузке до 5000 RPS<br>
         &nbsp;&nbsp;• Реализация сервиса балансировки задач (Round Robin + health checks)<br>
         &nbsp;&nbsp;• Настройка мониторинга и алертинга — снижение времени реакции на инциденты<br>
         &nbsp;&nbsp;• Внедрение unit и integration тестов (${createAnchor('Jest', 'https://jestjs.io/')}) для критичных модулей<br>
-        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('WebRTC', 'https://webrtc.org/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}</em><br>
+        &nbsp;&nbsp;• Руководил проектированием и реализацией IAM-платформы для 40+ сервисов с централизованной аутентификацией и авторизацией<br>
+        &nbsp;&nbsp;• Заменил разрозненные механизмы входа единым IAM-слоем с поддержкой OAuth2/OIDC и SSO, сократив время подключения пользователей примерно на 60%<br>
+        &nbsp;&nbsp;• Внедрил CI/CD и автоматизированное тестирование для IAM-сервисов, снизив риски релизов и повысив предсказуемость поставки изменений<br>
+        <em>Стек: ${createAnchor('Go', 'https://go.dev/')}, ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('Gin', 'https://gin-gonic.com/')}, ${createAnchor('GORM', 'https://gorm.io/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('RabbitMQ', 'https://www.rabbitmq.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, Docker Compose, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}, ${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')}, ${createAnchor('Keycloak', 'https://www.keycloak.org/')}, OAuth2/OIDC</em><br>
     `,
       `
         <br>
         <span style="color: #c4c03d">Январь 2023</span> — <span style="color: #c4c03d">Июль 2024</span> (1 год 7 месяцев)<br>
-        <strong>VISTA LLC</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Tim Lead / Backend Developer<br>
+        <strong>ООО "Виста"</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Team Lead / Backend Developer<br>
         <span style="color: #3daac4">Обязанности:</span><br>
         &nbsp;&nbsp;• Руководство backend-командой (8 разработчиков)<br>
         &nbsp;&nbsp;• Архитектурное проектирование сервисов<br>
         &nbsp;&nbsp;• Переход к микросервисной архитектуре<br>
         &nbsp;&nbsp;• Оптимизация производительности backend-систем<br>
-        &nbsp;&nbsp;• Настройка CI/CD<br>
+        &nbsp;&nbsp;• Настройка и развитие CI/CD<br>
         &nbsp;&nbsp;• Работа с заказчиками<br>
+        &nbsp;&nbsp;• Внедрение инженерных стандартов разработки и delivery-процессов<br>
         <span style="color: #3daac4">Достижения:</span><br>
-        &nbsp;&nbsp;• Перевёл ключевые сервисы на микросервисную архитектуру (${createAnchor('Docker', 'https://www.docker.com/')}-based deployment)<br>
-        &nbsp;&nbsp;• Оптимизировал SQL-запросы и кэширование в ${createAnchor('Redis', 'https://redis.io/')} — время ответа API с 4.2с до 1.5с<br>
+        &nbsp;&nbsp;• Выстроил базовую инженерную инфраструктуру для запуска и развития новых проектов, внедрив единые подходы к разработке и поставке изменений<br>
+        &nbsp;&nbsp;• Внедрил и настроил GitLab, стандартизировал работу с репозиториями и командные процессы<br>
+        &nbsp;&nbsp;• Разработал единые стандарты для ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')} pipelines, ускорив поставку продукта и сделав релизный процесс предсказуемым<br>
+        &nbsp;&nbsp;• Внедрил ${createAnchor('Docker', 'https://www.docker.com/')} в процессы развертывания и стандартизировал окружения<br>
+        &nbsp;&nbsp;• Инициировал переход компании к микросервисной архитектуре<br>
+        &nbsp;&nbsp;• Изменил процесс взаимодействия внутри компании: выстроил иерархию и маршрут постановки задач, повысив прозрачность и управляемость разработки<br>
+        &nbsp;&nbsp;• Провел глобальный рефакторинг более чем 20 проектов, повысив поддерживаемость и качество кода<br>
+        &nbsp;&nbsp;• Организовал переезд сервисов на актуальные версии технологий и зависимостей, снизив технический долг<br>
+        &nbsp;&nbsp;• Оптимизировал SQL-запросы и кэширование в ${createAnchor('Redis', 'https://redis.io/')} — время ответа API с 5–6с до 0.5с<br>
         &nbsp;&nbsp;• Внедрил ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')} — время деплоя 2–3 минуты<br>
         &nbsp;&nbsp;• Настроил мониторинг с uptime 99.9% для проекта с 20 000+ пользователей в день<br>
         &nbsp;&nbsp;• Ввел стандарты code review и Git Flow<br>
-        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
+        <em>Стек: ${createAnchor('Go', 'https://go.dev/')}, ${createAnchor('Node.js', 'https://nodejs.org/')}, ${createAnchor('TypeScript', 'https://www.typescriptlang.org/')}, ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('Gin', 'https://gin-gonic.com/')}, ${createAnchor('GORM', 'https://gorm.io/')}, ${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}, ${createAnchor('PostgreSQL', 'https://www.postgresql.org/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('ClickHouse', 'https://clickhouse.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}, ${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
     `,
       `
         <br>
         <span style="color: #c4c03d">Декабрь 2020</span> — <span style="color: #c4c03d">Январь 2023</span> (2 года 2 месяца)<br>
-        <strong>VISTA LLC</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Backend Developer<br>
+        <strong>ООО "Виста"</strong> (${createAnchor('vistamed.pro', 'https://vistamed.pro')}) — Backend Developer<br>
         <span style="color: #3daac4">Обязанности:</span><br>
         &nbsp;&nbsp;• Поддержка и развитие backend-сервисов (${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('Node.js', 'https://nodejs.org/')})<br>
         &nbsp;&nbsp;• Разработка REST API, SOAP<br>
         &nbsp;&nbsp;• Оптимизация структуры БД<br>
         &nbsp;&nbsp;• Контейнеризация в ${createAnchor('Docker', 'https://www.docker.com/')}<br>
         &nbsp;&nbsp;• Автоматизация релизов<br>
+        &nbsp;&nbsp;• Повышение безопасности backend-решений<br>
         <span style="color: #3daac4">Достижения:</span><br>
         &nbsp;&nbsp;• Устранил критические уязвимости (SQL injection, XSS)<br>
-        &nbsp;&nbsp;• Оптимизировал запросы в ${createAnchor('MySQL', 'https://www.mysql.com/')} с помощью индексов<br>
-        &nbsp;&nbsp;• Внедрил автоматизированное тестирование и CI<br>
-        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('Apache', 'https://httpd.apache.org/')}</em><br>
+        &nbsp;&nbsp;• Оптимизировал запросы в ${createAnchor('MySQL', 'https://www.mysql.com/')} с помощью индексов и доработки структуры запросов<br>
+        &nbsp;&nbsp;• Разрабатывал и дорабатывал REST API и SOAP-интеграции для внутренних и внешних сервисов<br>
+        &nbsp;&nbsp;• Контейнеризировал приложения с использованием ${createAnchor('Docker', 'https://www.docker.com/')}, упростив локальную разработку и процессы развертывания<br>
+        &nbsp;&nbsp;• Внедрил автоматизированное тестирование и CI, повысив качество изменений и снизив количество ошибок при релизах<br>
+        &nbsp;&nbsp;• Повысил стабильность и предсказуемость релизного процесса за счет автоматизации поставки изменений<br>
+        <em>Стек: ${createAnchor('Node.js', 'https://nodejs.org/')} (${createAnchor('NestJS', 'https://nestjs.com/')}, ${createAnchor('Fastify', 'https://www.fastify.io/')}), ${createAnchor('PHP', 'https://www.php.net/')}, ${createAnchor('MySQL', 'https://www.mysql.com/')}, ${createAnchor('Redis', 'https://redis.io/')}, ${createAnchor('Docker', 'https://www.docker.com/')}, ${createAnchor('GitLab CI/CD', 'https://about.gitlab.com/topics/ci-cd/')}, ${createAnchor('Prometheus', 'https://prometheus.io/')}, ${createAnchor('Grafana', 'https://grafana.com/')}</em><br>
     `
     ]
   }
