@@ -1,14 +1,16 @@
 {
   "name": "business-card",
-  "version": "3.1.5",
-  "description": "Business card about a person (Vite + React + TypeScript)",
+  "version": "3.1.6",
+  "description": "Business card about a person",
   "main": "index.html",
   "scripts": {
     "dev": "vite --port 5173 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --strictPort --port 5173 --host=0.0.0.0",
     "format": "prettier . --write",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ncu:check": "ncu",
+    "ncu:update": "ncu -u"
   },
   "repository": {
     "type": "git",

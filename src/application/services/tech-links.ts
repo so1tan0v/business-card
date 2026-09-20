@@ -1,0 +1,23 @@
+export const TECH_LINKS: Readonly<Record<string, string>> = {
+  Go: 'https://go.dev/',
+  'Node.js': 'https://nodejs.org/',
+  TypeScript: 'https://www.typescriptlang.org/',
+  PHP: 'https://www.php.net/',
+  Gin: 'https://gin-gonic.com/',
+  GORM: 'https://gorm.io/',
+  NestJS: 'https://nestjs.com/',
+  Fastify: 'https://www.fastify.io/',
+  RabbitMQ: 'https://www.rabbitmq.com/',
+  Redis: 'https://redis.io/',
+  PostgreSQL: 'https://www.postgresql.org/',
+  MySQL: 'https://www.mysql.com/',
+  ClickHouse: 'https://clickhouse.com/',
+  Docker: 'https://www.docker.com/',
+  'GitLab CI/CD': 'https://about.gitlab.com/topics/ci-cd/',
+  Prometheus: 'https://prometheus.io/',
+  Grafana: 'https://grafana.com/',
+  Keycloak: 'https://www.keycloak.org/',
+  WebRTC: 'https://webrtc.org/',
+  WebSocket: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API',
+  Jest: 'https://jestjs.io/'
+};
