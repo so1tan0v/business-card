@@ -51,4 +51,3 @@ export interface TerminalPresenter {
   clear(): void;
   activateMatrix(): void;
 }
-

@@ -1,9 +1,20 @@
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
+
+function cacheBustHtml(): Plugin {
+  const version = Date.now().toString();
+
+  return {
+    name: 'cache-bust-html',
+    transformIndexHtml(html) {
+      return html.replaceAll('?ver=3-0-0', `?v=${version}`);
+    }
+  };
+}
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), cacheBustHtml()],
   resolve: {
     alias: {
       '@domain': fileURLToPath(new URL('./src/domain', import.meta.url)),

@@ -117,8 +117,8 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   cowsayTemplate: `
   \\   ^__^
    \\  (oo)\\_______
-      (__)\\       )\\/\\
-          ||----w |
+      (__)\\       )\\/\\/\\
+          ||---ww |
           ||     ||
 `,
   easterEggs: [
@@ -209,42 +209,42 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   gitHub: {
     link: 'https://github.com/so1tan0v',
     projects: [
-      {
-        name: 'Business Card (React, TypeScript)',
-        link: 'https://github.com/so1tan0v/business-card'
-      },
-      {
-        name: 'Stack Research (Node.js, Python, GoLang, C#)',
-        link: 'https://github.com/so1tan0v/stack-research'
-      },
-      {
-        name: '(Contributor) NestJS Custom Injector (TypeScript)',
-        link: 'https://github.com/so1tan0v/nestjs-custom-injector'
-      },
-      {
-        name: '(Contributor) TypeORM Model Generator (TypeScript)',
-        link: 'https://github.com/so1tan0v/typeorm-model-generator'
-      },
-      {
-        name: 'Disk Usage CLI (Go)',
-        link: 'https://github.com/so1tan0v/go-du-cli'
-      },
-      {
-        name: 'Gendiff CLI (Go)',
-        link: 'https://github.com/so1tan0v/go-gendiff-cli'
-      },
-      {
-        name: 'URL Shortener (Go, PostgreSQL, Gin, Caddy)',
-        link: 'https://github.com/so1tan0v/go-url-shortener'
-      },
-      {
-        name: 'Crawler CLI (Go)',
-        link: 'https://github.com/so1tan0v/go-crawler-cli'
-      },
-      {
-        name: 'Formatter & Converter (React, TypeScript, Go)',
-        link: 'https://github.com/so1tan0v/so1-formatter-converter'
-      }
+      // {
+      //   name: 'Business Card (React, TypeScript)',
+      //   link: 'https://github.com/so1tan0v/business-card'
+      // },
+      // {
+      //   name: 'Stack Research (Node.js, Python, GoLang, C#)',
+      //   link: 'https://github.com/so1tan0v/stack-research'
+      // },
+      // {
+      //   name: '(Contributor) NestJS Custom Injector (TypeScript)',
+      //   link: 'https://github.com/so1tan0v/nestjs-custom-injector'
+      // },
+      // {
+      //   name: '(Contributor) TypeORM Model Generator (TypeScript)',
+      //   link: 'https://github.com/so1tan0v/typeorm-model-generator'
+      // },
+      // {
+      //   name: 'Disk Usage CLI (Go)',
+      //   link: 'https://github.com/so1tan0v/go-du-cli'
+      // },
+      // {
+      //   name: 'Gendiff CLI (Go)',
+      //   link: 'https://github.com/so1tan0v/go-gendiff-cli'
+      // },
+      // {
+      //   name: 'URL Shortener (Go, PostgreSQL, Gin, Caddy)',
+      //   link: 'https://github.com/so1tan0v/go-url-shortener'
+      // },
+      // {
+      //   name: 'Crawler CLI (Go)',
+      //   link: 'https://github.com/so1tan0v/go-crawler-cli'
+      // },
+      // {
+      //   name: 'Formatter & Converter (React, TypeScript, Go)',
+      //   link: 'https://github.com/so1tan0v/so1-formatter-converter'
+      // }
     ]
   },
   links: {
