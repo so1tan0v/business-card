@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, type KeyboardEvent, type RefObject } from 'react';
+import { memo, useEffect, useRef, type KeyboardEvent, type ReactNode, type RefObject } from 'react';
 import type { Lang } from '../../domain/entities';
 import { TerminalInput } from './TerminalInput';
 import { TerminalOutput } from './TerminalOutput';
@@ -10,6 +10,8 @@ interface TerminalWindowProps {
   readonly input: string;
   readonly inputDisabled: boolean;
   readonly inputRef: RefObject<HTMLInputElement>;
+  readonly overlay?: ReactNode;
+  readonly onOverlayClose?: () => void;
   readonly onInputChange: (value: string) => void;
   readonly onInputKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
@@ -21,6 +23,8 @@ export const TerminalWindow = memo(function TerminalWindow({
   input,
   inputDisabled,
   inputRef,
+  overlay,
+  onOverlayClose,
   onInputChange,
   onInputKeyDown
 }: TerminalWindowProps) {
@@ -38,25 +42,31 @@ export const TerminalWindow = memo(function TerminalWindow({
   return (
     <div className="mac-window" role="application" aria-label="Interactive terminal">
       <div className="mac-titlebar">
-        <div className="traffic-lights" aria-hidden="true">
-          <span className="light red" />
-          <span className="light yellow" />
-          <span className="light green" />
+        <div className="traffic-lights">
+          <button
+            type="button"
+            className={`light red${onOverlayClose ? ' is-action' : ''}`}
+            aria-label="Close"
+            onClick={onOverlayClose}
+          />
+          <button type="button" className="light yellow" aria-label="Minimize" tabIndex={-1} />
+          <button type="button" className="light green" aria-label="Zoom" tabIndex={-1} />
         </div>
         <div className="mac-title">{username}:~</div>
       </div>
-      <div className="mac-content" ref={contentRef}>
+      <div className="mac-content" ref={contentRef} aria-hidden={overlay ? true : undefined}>
         <TerminalOutput lines={lines} lang={lang} />
         <TerminalInput
           username={username}
           lang={lang}
           value={input}
-          disabled={inputDisabled}
+          disabled={inputDisabled || Boolean(overlay)}
           inputRef={inputRef}
           onChange={onInputChange}
           onKeyDown={onInputKeyDown}
         />
       </div>
+      {overlay}
     </div>
   );
 });

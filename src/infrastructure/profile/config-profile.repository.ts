@@ -45,4 +45,8 @@ export class ConfigProfileRepository implements ProfileRepository {
   getAsciiImage(): string {
     return asciiImage;
   }
+
+  getConverterUrl(): string {
+    return config.converterUrl;
+  }
 }

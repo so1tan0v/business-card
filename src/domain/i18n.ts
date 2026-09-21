@@ -26,6 +26,12 @@ export type I18nKey =
   | 'a11y.matrixHint'
   | 'a11y.terminalEmpty'
   | 'a11y.skipToInput'
-  | 'error.generic';
+  | 'error.generic'
+  | 'converter.launching'
+  | 'converter.error'
+  | 'a11y.converterLabel'
+  | 'a11y.converterHint'
+  | 'a11y.converterLoading'
+  | 'a11y.converterLoadError';
 
 export type I18nParams = Readonly<Record<string, string | number>>;

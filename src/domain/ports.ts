@@ -44,10 +44,12 @@ export interface ProfileRepository {
   getDefaultTheme(): Theme;
   getNonAlphabeticKeyCodes(): readonly number[];
   getAsciiImage(): string;
+  getConverterUrl(): string;
 }
 
 export interface TerminalPresenter {
   appendLine(html: string): void;
   clear(): void;
   activateMatrix(): void;
+  activateConverter(url: string): void;
 }

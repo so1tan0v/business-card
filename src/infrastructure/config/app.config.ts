@@ -28,6 +28,7 @@ export interface AppConfig {
   readonly neofetch: NeofetchInfo;
   readonly cowsayTemplate: string;
   readonly easterEggs: readonly string[];
+  readonly converterUrl: string;
   readonly informationAboutMe: Readonly<Record<string, InfoNode>>;
   readonly gitHub: {
     readonly link: string;
@@ -74,6 +75,7 @@ export const config: AppConfig = {
     'curl',
     'ssh',
     'matrix',
+    'converter',
     'resume',
     'cv',
     'contact',
@@ -126,6 +128,7 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
     '🎹 The matrix has you. Run: matrix',
     '🥚 There is no spoon. But there is npm install.'
   ],
+  converterUrl: readConverterUrl(),
   informationAboutMe: {
     name: {
       txt: `<span style="color: #3daac4">Alexander</span>@<span style="color: #3daac4">Soltanov</span>`,
@@ -262,3 +265,12 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
   },
   experience: experienceEntries
 };
+
+function readConverterUrl(): string {
+  const fromEnv = import.meta.env.VITE_CONVERTER_URL;
+  if (typeof fromEnv === 'string' && fromEnv.trim()) {
+    return fromEnv.trim();
+  }
+
+  return 'https://conv.soltanov.dev';
+}

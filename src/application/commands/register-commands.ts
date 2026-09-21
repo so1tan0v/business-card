@@ -1,3 +1,4 @@
+import { appsHandlers } from './apps.commands';
 import type { CommandRegistry } from './command-registry';
 import { funHandlers } from './fun.commands';
 import { gitHandler } from './git.commands';
@@ -12,6 +13,7 @@ export function registerCommands(registry: CommandRegistry): void {
     ...settingsHandlers,
     ...profileHandlers,
     ...funHandlers,
+    ...appsHandlers,
     gitHandler,
     networkHandler
   ];

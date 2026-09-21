@@ -1,5 +1,6 @@
 import { useDependencies } from '../context/dependencies.context';
 import { useTerminalController } from '../hooks/useTerminalController';
+import { ConverterOverlay } from './ConverterOverlay';
 import { ErrorBoundary } from './ErrorBoundary';
 import { MacMenuBar } from './MacMenuBar';
 import { MatrixOverlay } from './MatrixOverlay';
@@ -15,13 +16,15 @@ function AppShell() {
     setInput,
     lines,
     matrixActive,
+    converterUrl,
     inputDisabled,
     menuBarTime,
     inputRef,
     onInputKeyDown,
     toggleTheme,
     toggleLang,
-    closeMatrix
+    closeMatrix,
+    closeConverter
   } = useTerminalController();
 
   return (
@@ -46,6 +49,20 @@ function AppShell() {
           inputRef={inputRef}
           onInputChange={setInput}
           onInputKeyDown={onInputKeyDown}
+          overlay={
+            converterUrl ? (
+              <ConverterOverlay
+                url={converterUrl}
+                theme={theme}
+                label={translator.t(lang, 'a11y.converterLabel')}
+                hint={translator.t(lang, 'a11y.converterHint')}
+                loadingLabel={translator.t(lang, 'a11y.converterLoading')}
+                errorLabel={translator.t(lang, 'a11y.converterLoadError')}
+                onExit={closeConverter}
+              />
+            ) : null
+          }
+          onOverlayClose={converterUrl ? closeConverter : undefined}
         />
       </div>
     </div>

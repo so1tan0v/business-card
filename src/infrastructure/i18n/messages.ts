@@ -42,7 +42,13 @@ export const messages: Dictionary = {
     'a11y.matrixHint': () => 'Press Escape to exit',
     'a11y.terminalEmpty': () => 'Terminal is empty. Type help to get started.',
     'a11y.skipToInput': () => 'Skip to command input',
-    'error.generic': () => 'Something went wrong. Reload the page or type help.'
+    'error.generic': () => 'Something went wrong. Reload the page or type help.',
+    'converter.launching': () => 'Launching converter. Press Ctrl+C or Command+C to return.',
+    'converter.error': () => 'converter: invalid URL in config',
+    'a11y.converterLabel': () => 'Formatter and converter',
+    'a11y.converterHint': () => 'Press Ctrl+C or Command+C to exit',
+    'a11y.converterLoading': () => 'Starting converter...',
+    'a11y.converterLoadError': () => 'Converter failed to load. Press Ctrl+C or Command+C to return.'
   },
   ru: {
     welcome: params =>
@@ -81,6 +87,12 @@ export const messages: Dictionary = {
     'a11y.matrixHint': () => 'Нажмите Escape, чтобы выйти',
     'a11y.terminalEmpty': () => 'Терминал пуст. Введите help, чтобы начать.',
     'a11y.skipToInput': () => 'Перейти к полю ввода команды',
-    'error.generic': () => 'Что-то пошло не так. Перезагрузите страницу или введите help.'
+    'error.generic': () => 'Что-то пошло не так. Перезагрузите страницу или введите help.',
+    'converter.launching': () => 'Запускаю конвертер. Нажмите Ctrl+C или Command+C, чтобы вернуться.',
+    'converter.error': () => 'converter: некорректный URL в конфиге',
+    'a11y.converterLabel': () => 'Форматтер и конвертер',
+    'a11y.converterHint': () => 'Нажмите Ctrl+C или Command+C, чтобы выйти',
+    'a11y.converterLoading': () => 'Запускаю конвертер...',
+    'a11y.converterLoadError': () => 'Не удалось загрузить конвертер. Нажмите Ctrl+C или Command+C, чтобы вернуться.'
   }
 };

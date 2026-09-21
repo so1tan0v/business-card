@@ -19,6 +19,7 @@ export function useTerminalController() {
   const [input, setInput] = useState('');
   const [lines, setLines] = useState<string[]>([]);
   const [matrixActive, setMatrixActive] = useState(false);
+  const [converterUrl, setConverterUrl] = useState<string | null>(null);
   const [inputDisabled, setInputDisabled] = useState(false);
   const [menuBarTime, setMenuBarTime] = useState(() => new Date());
 
@@ -62,7 +63,8 @@ export function useTerminalController() {
       presenter: {
         appendLine,
         clear: () => setLines([]),
-        activateMatrix: () => setMatrixActive(true)
+        activateMatrix: () => setMatrixActive(true),
+        activateConverter: (url: string) => setConverterUrl(url)
       },
       translator: deps.translator,
       clock: deps.clock,
@@ -229,7 +231,7 @@ export function useTerminalController() {
 
   useEffect(() => {
     const onKeyUp = (event: KeyboardEvent) => {
-      if (document.activeElement === inputRef.current) {
+      if (converterUrl || document.activeElement === inputRef.current) {
         return;
       }
 
@@ -244,7 +246,7 @@ export function useTerminalController() {
 
     window.addEventListener('keyup', onKeyUp);
     return () => window.removeEventListener('keyup', onKeyUp);
-  }, [nonAlphabeticKeys]);
+  }, [converterUrl, nonAlphabeticKeys]);
 
   useEffect(() => {
     const activateCommand = (cmd: string) => {
@@ -311,6 +313,11 @@ export function useTerminalController() {
     inputRef.current?.focus();
   }, []);
 
+  const closeConverter = useCallback(() => {
+    setConverterUrl(null);
+    inputRef.current?.focus();
+  }, []);
+
   return {
     profile,
     settings,
@@ -318,6 +325,7 @@ export function useTerminalController() {
     setInput,
     lines,
     matrixActive,
+    converterUrl,
     inputDisabled,
     menuBarTime,
     inputRef,
@@ -325,6 +333,7 @@ export function useTerminalController() {
     toggleTheme,
     toggleLang,
     closeMatrix,
+    closeConverter,
     lang: settings.lang,
     theme: settings.theme
   };
