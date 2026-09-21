@@ -347,9 +347,9 @@ body.theme-light .mac-titlebar {
 
 .mac-title {
   position: absolute;
-  left: 80px;
+  left: 0;
   right: 0;
-  text-align: left;
+  text-align: center;
   color: rgba(255, 255, 255, 0.9);
   font-size: 13px;
   font-weight: 500;
