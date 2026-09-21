@@ -50,6 +50,5 @@ export interface ProfileRepository {
 export interface TerminalPresenter {
   appendLine(html: string): void;
   clear(): void;
-  activateMatrix(): void;
   activateConverter(url: string): void;
 }

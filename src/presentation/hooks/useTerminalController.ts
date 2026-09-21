@@ -18,7 +18,6 @@ export function useTerminalController() {
   const [settings, setSettings] = useState<TerminalSettings>(() => deps.loadSettings.execute());
   const [input, setInput] = useState('');
   const [lines, setLines] = useState<string[]>([]);
-  const [matrixActive, setMatrixActive] = useState(false);
   const [converterUrl, setConverterUrl] = useState<string | null>(null);
   const [inputDisabled, setInputDisabled] = useState(false);
   const [menuBarTime, setMenuBarTime] = useState(() => new Date());
@@ -63,7 +62,6 @@ export function useTerminalController() {
       presenter: {
         appendLine,
         clear: () => setLines([]),
-        activateMatrix: () => setMatrixActive(true),
         activateConverter: (url: string) => setConverterUrl(url)
       },
       translator: deps.translator,
@@ -308,11 +306,6 @@ export function useTerminalController() {
     applySettings({ lang: settings.lang === 'en' ? 'ru' : 'en' });
   }, [applySettings, settings.lang]);
 
-  const closeMatrix = useCallback(() => {
-    setMatrixActive(false);
-    inputRef.current?.focus();
-  }, []);
-
   const closeConverter = useCallback(() => {
     setConverterUrl(null);
     inputRef.current?.focus();
@@ -324,7 +317,6 @@ export function useTerminalController() {
     input,
     setInput,
     lines,
-    matrixActive,
     converterUrl,
     inputDisabled,
     menuBarTime,
@@ -332,7 +324,6 @@ export function useTerminalController() {
     onInputKeyDown,
     toggleTheme,
     toggleLang,
-    closeMatrix,
     closeConverter,
     lang: settings.lang,
     theme: settings.theme

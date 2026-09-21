@@ -22,8 +22,6 @@ export type I18nKey =
   | 'a11y.switchTheme'
   | 'a11y.switchLang'
   | 'a11y.terminalInput'
-  | 'a11y.matrixLabel'
-  | 'a11y.matrixHint'
   | 'a11y.terminalEmpty'
   | 'a11y.skipToInput'
   | 'error.generic'

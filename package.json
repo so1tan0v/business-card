@@ -1,6 +1,6 @@
 {
   "name": "business-card",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "Business card about a person",
   "main": "index.html",
   "scripts": {

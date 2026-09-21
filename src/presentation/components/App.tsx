@@ -3,7 +3,6 @@ import { useTerminalController } from '../hooks/useTerminalController';
 import { ConverterOverlay } from './ConverterOverlay';
 import { ErrorBoundary } from './ErrorBoundary';
 import { MacMenuBar } from './MacMenuBar';
-import { MatrixOverlay } from './MatrixOverlay';
 import { TerminalWindow } from './TerminalWindow';
 
 function AppShell() {
@@ -15,7 +14,6 @@ function AppShell() {
     input,
     setInput,
     lines,
-    matrixActive,
     converterUrl,
     inputDisabled,
     menuBarTime,
@@ -23,7 +21,6 @@ function AppShell() {
     onInputKeyDown,
     toggleTheme,
     toggleLang,
-    closeMatrix,
     closeConverter
   } = useTerminalController();
 
@@ -34,12 +31,6 @@ function AppShell() {
       </a>
       <MacMenuBar lang={lang} theme={theme} now={menuBarTime} onToggleTheme={toggleTheme} onToggleLang={toggleLang} />
       <div className="model-content">
-        <MatrixOverlay
-          active={matrixActive}
-          label={translator.t(lang, 'a11y.matrixLabel')}
-          hint={translator.t(lang, 'a11y.matrixHint')}
-          onExit={closeMatrix}
-        />
         <TerminalWindow
           username={profile.username}
           lang={lang}

@@ -74,7 +74,6 @@ export const config: AppConfig = {
     'ping',
     'curl',
     'ssh',
-    'matrix',
     'converter',
     'resume',
     'cv',
@@ -125,7 +124,6 @@ Contact: sashasyltanov@gmail.com | Telegram @so1tan0v | alex.soltanov.dev`,
 `,
   easterEggs: [
     '🐧 sudo make me a sandwich -> Make it yourself. (xkcd 149)',
-    '🎹 The matrix has you. Run: matrix',
     '🥚 There is no spoon. But there is npm install.'
   ],
   converterUrl: readConverterUrl(),

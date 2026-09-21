@@ -70,12 +70,6 @@ export const funHandlers: readonly CommandHandler[] = [
     }
   },
   {
-    name: 'matrix',
-    execute(_args, ctx) {
-      ctx.presenter.activateMatrix();
-    }
-  },
-  {
     name: 'easteregg',
     execute(_args, ctx) {
       const eggs = ctx.profile.easterEggs;

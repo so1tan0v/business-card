@@ -38,8 +38,6 @@ export const messages: Dictionary = {
     'a11y.switchLang': params => `Language: ${params?.current ?? ''}. Switch language`,
     'a11y.terminalInput': () =>
       'Terminal command input. Type a command and press Enter. Use Tab for completion, Arrow Up/Down for history.',
-    'a11y.matrixLabel': () => 'Matrix animation overlay',
-    'a11y.matrixHint': () => 'Press Escape to exit',
     'a11y.terminalEmpty': () => 'Terminal is empty. Type help to get started.',
     'a11y.skipToInput': () => 'Skip to command input',
     'error.generic': () => 'Something went wrong. Reload the page or type help.',
@@ -83,8 +81,6 @@ export const messages: Dictionary = {
     'a11y.switchLang': params => `Язык: ${params?.current ?? ''}. Сменить язык`,
     'a11y.terminalInput': () =>
       'Поле ввода команды. Введите команду и нажмите Enter. Tab - автодополнение, стрелки вверх/вниз - история.',
-    'a11y.matrixLabel': () => 'Анимация Matrix',
-    'a11y.matrixHint': () => 'Нажмите Escape, чтобы выйти',
     'a11y.terminalEmpty': () => 'Терминал пуст. Введите help, чтобы начать.',
     'a11y.skipToInput': () => 'Перейти к полю ввода команды',
     'error.generic': () => 'Что-то пошло не так. Перезагрузите страницу или введите help.',
